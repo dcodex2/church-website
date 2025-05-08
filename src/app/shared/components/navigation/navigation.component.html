@@ -1,0 +1,39 @@
+<nav [ngClass]="layoutClasses" [style.fontFamily]="settings.fontFamily">
+  <ng-container *ngFor="let item of navItems">
+
+    <div *ngIf="item.type === 'heading'" class="text-gray-700 mt-6 mb-2 font-bold"
+      [ngStyle]="{ 'font-size': settings.headingFontSize }">
+      {{ item.label }}
+    </div>
+
+    <div *ngIf="item.type === 'link'" class="relative group">
+
+      <!-- Parent Link -->
+      <a [routerLink]="item.path" class="flex items-center gap-2 text-gray-800 hover:text-blue-500 transition-colors"
+        [ngStyle]="{
+             'font-size': settings.labelFontSize,
+             'padding': settings.linkPadding,
+             'color': item.labelColor || '#333'
+           }">
+        <i *ngIf="item.icon" class="material-icons">{{ item.icon }}</i>
+        {{ item.label }}
+      </a>
+
+      <!-- Children Links (Conditional) -->
+      <!-- Todo animation drodown is not working here -->
+      <div *ngIf="item.children?.length" [@dropdown] [ngClass]="getChildrenClasses()">
+        <a *ngFor="let child of item.children" [routerLink]="child.path"
+          class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap"
+          [ngStyle]="{
+               'font-size': settings.labelFontSize,
+               'color': child.labelColor || '#666'
+             }">
+          <i *ngIf="child.icon" class="material-icons">{{ child.icon }}</i>
+          {{ child.label }}
+        </a>
+      </div>
+
+    </div>
+
+  </ng-container>
+</nav>

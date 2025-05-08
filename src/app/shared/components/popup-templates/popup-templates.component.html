@@ -1,0 +1,94 @@
+<!-- Confirmation Dialog -->
+<ng-template #confirm let-close="close" let-data="data">
+  <div class="p-6">
+    <h2 class="text-lg font-bold mb-4">Are you sure?</h2>
+    <p class="mb-6">{{ data?.message || 'Do you want to proceed?' }}</p>
+    <div class="flex justify-end gap-4">
+      <button class="cursor-pointer" mat-button (click)="close(false)">Cancel</button>
+      <button class="cursor-pointer" mat-raised-button color="warn" (click)="close(true)">Yes, Delete</button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Add Ministry -->
+<ng-template #addMinistry let-close="close" let-name="name">
+  <div class="p-6">
+    <h2 class="text-lg font-bold mb-4">Add {{name}}</h2>
+    <input class="w-full p-2 border mb-4" placeholder="Ministry Name" [(ngModel)]="ministryName" />
+    <div class="flex justify-end gap-4">
+      <button mat-button (click)="close()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="close(ministryName)">Add</button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Info Popup -->
+<ng-template #info let-close="close" let-data="data">
+  <div class="p-6">
+    <h2 class="text-lg font-bold mb-2">{{ data?.title || 'Info' }}</h2>
+    <p class="mb-4">{{ data?.message || 'Here is some important information.' }}</p>
+    <div class="flex justify-end">
+      <button mat-button (click)="close()">Close</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #addEventTemplate let-saveEvent="saveEvent" let-close="close">
+  <div class="w-[600px] bg-white rounded-2xl shadow-xl p-6 space-y-4 text-sm">
+    <h2 class="text-lg font-semibold text-gray-800">Create Event</h2>
+
+    <!-- Title -->
+    <input type="text" placeholder="Event title" [(ngModel)]="newEvent.title"
+      class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <!-- Description -->
+    <textarea placeholder="Description" rows="3" [(ngModel)]="newEvent.description"
+      class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+    <!-- Date & Time -->
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 items-center">
+      <!-- Date -->
+      <input type="date" [(ngModel)]="newEvent.date"
+        class="col-span-2 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+      <!-- Start Time -->
+      <input type="time" [(ngModel)]="newEvent.startTime"
+        class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+      <!-- End Time -->
+      <input type="time" [(ngModel)]="newEvent.endTime"
+        class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <!-- Location -->
+    <input type="text" placeholder="Location" [(ngModel)]="newEvent.location"
+      class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <!-- Attachment -->
+    <label class="block text-gray-500 text-sm">Attach Document</label>
+    <input type="file"
+      class="block w-full text-sm text-gray-600 file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
+      (change)="onFileSelected($event)" />
+
+    <!-- Category -->
+    <select [(ngModel)]="newEvent.category"
+      class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <option value="" disabled selected>Select category</option>
+      <option value="meeting">Meeting</option>
+      <option value="birthday">Birthday</option>
+      <option value="call">Call</option>
+      <option value="deadline">Deadline</option>
+    </select>
+
+    <!-- Actions -->
+    <div class="flex justify-end gap-3 pt-2">
+      <button type="button" class="px-4 py-2 rounded-md bg-gray-100 hover:bg-gray-200 text-gray-700" (click)="close()">
+        Cancel
+      </button>
+      <button type="button" class="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-medium"
+        (click)="saveEvent(newEvent)">
+        Save
+      </button>
+    </div>
+  </div>
+</ng-template>
