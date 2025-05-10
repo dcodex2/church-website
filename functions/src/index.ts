@@ -2,7 +2,7 @@ import { onRequest } from 'firebase-functions/v2/https';
 import express from 'express';
 import { join } from 'path';
 
-// Correct paths relative to functions/lib
+// Correct relative paths (from functions/lib)
 const distFolder = join(
   __dirname,
   '../../dist/church-website-template-basic/server'
@@ -12,7 +12,9 @@ const browserFolder = join(
   '../../dist/church-website-template-basic/browser'
 );
 
-const app = require(`${distFolder}/main.server.mjs`).app;
+// Robustly load the exported SSR Express app
+const module = require(`${distFolder}/main.server.mjs`);
+const app = module.app || module.default?.app || module.default;
 
 const server = express();
 
