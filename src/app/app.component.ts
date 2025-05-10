@@ -27,7 +27,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'angular-stater-template';
+  title = 'church-website-template-basic';
   logoUrl = '/logos/church-logo.png';
   footerSections: FooterSection[] = [
     {

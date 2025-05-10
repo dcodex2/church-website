@@ -15,6 +15,8 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SsrTranslateLoader } from './ssr-translate-loader';
+import { PLATFORM_ID } from '@angular/core';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,13 +31,14 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     // Required for translation
     importProvidersFrom(
-      HttpClientModule,
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
+          useFactory: (http: HttpClient, platformId: Object) =>
+            new SsrTranslateLoader(http, platformId),
+          deps: [HttpClient, PLATFORM_ID],
         },
+        defaultLanguage: 'en',
       })
     ),
   ],

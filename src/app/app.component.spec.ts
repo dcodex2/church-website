@@ -14,16 +14,18 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'angular-stater-template' title`, () => {
+  it(`should have the 'church-website-template-basic' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-stater-template');
+    expect(app.title).toEqual('church-website-template-basic');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-stater-template');
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Hello, church-website-template-basic'
+    );
   });
 });
