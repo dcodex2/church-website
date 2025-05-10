@@ -9,6 +9,7 @@ import { ButtonsComponent } from './components/buttons/buttons.component';
 import { DropdownsComponent } from './components/dropdowns/dropdowns.component';
 import { VideoComponent } from './components/video/video.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { VisitComponent } from './components/visit/visit.component';
 
 export const routes: Routes = [
   {
@@ -51,5 +52,9 @@ export const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent,
+  },
+  {
+    path: 'visit',
+    component: VisitComponent,
   },
 ];

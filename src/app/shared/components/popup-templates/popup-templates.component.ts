@@ -7,11 +7,12 @@ import {
 import { PopupTemplateRegistryService } from '../../services/popup-template-registry.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-popup-templates',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ButtonComponent],
   templateUrl: './popup-templates.component.html',
 })
 export class PopupTemplatesComponent implements AfterViewInit {
@@ -19,6 +20,7 @@ export class PopupTemplatesComponent implements AfterViewInit {
   @ViewChild('addMinistry') addMinistry!: TemplateRef<any>;
   @ViewChild('info') info!: TemplateRef<any>;
   @ViewChild('addEventTemplate') addEventTemplate!: TemplateRef<any>;
+  @ViewChild('prayerTemplate') prayerTemplate!: TemplateRef<any>;
 
   ministryName = '';
   name = '';
@@ -32,6 +34,11 @@ export class PopupTemplatesComponent implements AfterViewInit {
     startTime: '', // e.g., '14:30'
     endTime: '',
   };
+  prayer = {
+    name: '',
+    email: '',
+    message: '',
+  };
 
   constructor(private registry: PopupTemplateRegistryService) {}
 
@@ -40,6 +47,7 @@ export class PopupTemplatesComponent implements AfterViewInit {
     this.registry.registerTemplate('addMinistry', this.addMinistry);
     this.registry.registerTemplate('info', this.info);
     this.registry.registerTemplate('addEventTemplate', this.addEventTemplate);
+    this.registry.registerTemplate('prayerTemplate', this.prayerTemplate);
   }
 
   onFileSelected(event: any) {
@@ -51,4 +59,11 @@ export class PopupTemplatesComponent implements AfterViewInit {
     console.log('Event data:', this.newEvent);
     // You can now emit, save to backend, or update your calendar
   }
+
+  onSubmit() {
+    console.log('Prayer Request Submitted:', this.prayer);
+    // TODO: Handle submission (e.g., send to backend, show confirmation)
+  }
+
+  closePrayer() {}
 }

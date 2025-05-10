@@ -4,8 +4,12 @@ import { ComponentUsageComponent } from './shared/components/component-usage/com
 import { PopupTemplatesComponent } from './shared/components/popup-templates/popup-templates.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from './shared/components/footer/footer.component';
+import {
+  FooterComponent,
+  FooterSection,
+} from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -16,41 +20,50 @@ import { HeaderComponent } from './shared/components/header/header.component';
     FormsModule,
     CommonModule,
     FooterComponent,
-    HeaderComponent],
+    HeaderComponent,
+    TranslateModule,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'angular-stater-template';
-  logoUrl = '/logos/dcodex-logo.png';
-  headerLinks = [
-    { label: 'Home', path: '/', icon: 'home' },
-    { label: 'About', path: '/about', icon: 'info' },
-    { label: 'Services', path: '/services', icon: 'build' },
-    { label: 'Contact', path: '/contact', icon: 'phone' },
-  ];
-  footerSections = [
+  logoUrl = '/logos/church-logo.png';
+  footerSections: FooterSection[] = [
     {
-      title: 'Company',
+      title: 'FOOTER_QUICK_LINK_HEADER',
       links: [
-        { label: 'About Us', path: '/about' },
-        { label: 'Careers', path: '/careers' },
-        { label: 'Blog', path: '/blog' }
-      ]
+        { label: 'FOOTER_QUICK_LINK_1', path: '/blog' },
+        { label: 'FOOTER_QUICK_LINK_2', path: '/blog' },
+        { label: 'FOOTER_QUICK_LINK_3', path: '/contact' },
+      ],
     },
     {
-      title: 'Support',
+      title: 'FOOTER_SOCIAL_MEDIA_HEADER',
       links: [
-        { label: 'Contact', path: '/contact' },
-        { label: 'Help Center', path: '/help' }
-      ]
+        { label: 'FOOTER_SOCIAL_MEDIA_LINK_1' },
+        { label: 'FOOTER_SOCIAL_MEDIA_LINK_2' },
+        { label: 'FOOTER_SOCIAL_MEDIA_LINK_3' },
+      ],
     },
     {
-      title: 'Legal',
+      title: 'FOOTER_LEGAL_HEADER',
       links: [
-        { label: 'Privacy Policy', path: '/privacy' },
-        { label: 'Terms of Service', path: '/terms' }
-      ]
-    }
+        { label: 'FOOTER_LEGAL_LINK_1', path: '/privacy' },
+        { label: 'FOOTER_LEGAL_LINK_2', path: '/terms' },
+      ],
+    },
   ];
+
+  constructor(private translate: TranslateService) {
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('en');
+
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang?.match(/en|es/) ? browserLang : 'en');
+  }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
 }

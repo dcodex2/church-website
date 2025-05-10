@@ -1,17 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NavigationConfig, NavItem } from '../../../config/navigation/navigation.config';
+import {
+  NavigationConfig,
+  NavItem,
+} from '../../../config/navigation/navigation.config';
 import { NavigationSettings } from '../../../config/navigation/navigation-settings.config';
 import { dropdownAnimation } from '../../animations/dropdown.animation';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
   animations: [dropdownAnimation],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslateModule],
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.scss'
+  styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent {
   navItems: NavItem[] = NavigationConfig;
@@ -25,8 +29,7 @@ export class NavigationComponent {
       return this.layout === 'horizontal'
         ? 'flex flex-wrap items-center gap-4 md:gap-8'
         : 'flex flex-col';
-    }
-    else {
+    } else {
       return this.settings.layout === 'horizontal'
         ? 'flex flex-wrap items-center gap-4 md:gap-8'
         : 'flex flex-col';
@@ -49,6 +52,4 @@ export class NavigationComponent {
       }
     }
   }
-
-
 }

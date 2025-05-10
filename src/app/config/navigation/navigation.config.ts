@@ -11,65 +11,67 @@ export interface NavItem {
   path?: string;
   icon?: string;
   labelColor?: string;
+  hoverLabelColor?: string;
+  hoverLinkAnimation?: string;
   children?: NavChild[];
 }
 
+export const hoverLinkAnimations = [
+  {
+    type: 'underline',
+    animation:
+      'after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#005480] after:transition-all after:duration-300 hover:after:w-full',
+  },
+];
+
 export const NavigationConfig: NavItem[] = [
   // { type: 'heading', label: 'Main Section' },
-  { type: 'link', label: 'Home', path: '/', labelColor: '#000', icon: 'home' },
   {
     type: 'link',
-    label: 'About',
+    label: 'NAVIGATION_LINK_1',
+    path: '/',
+    labelColor: 'text-[#64748b]',
+    hoverLabelColor: 'hover:!text-[#005480] transition duration-200',
+    hoverLinkAnimation: hoverLinkAnimations[0].animation,
+  },
+  {
+    type: 'link',
+    label: 'NAVIGATION_LINK_2',
     path: '/about',
-    labelColor: '#000',
-    icon: 'person',
-  },
-  // { type: 'heading', label: 'Services' },
-  {
-    type: 'link',
-    label: 'Components',
-    path: '/components',
-    labelColor: '#000',
-    icon: 'handyman',
-    children: [
-      {
-        label: 'Carousels',
-        path: '/carousels',
-        labelColor: '#000',
-      },
-      {
-        label: 'Info Cards',
-        path: '/info-cards',
-        labelColor: '#000',
-      },
-      {
-        label: 'Buttons',
-        path: '/buttons',
-        labelColor: '#000',
-      },
-
-      {
-        label: 'Drop Downs',
-        path: '/dropdowns',
-        labelColor: '#000',
-      },
-      {
-        label: 'Videos',
-        path: '/videos',
-        labelColor: '#000',
-      },
-      {
-        label: 'Calendar',
-        path: '/calendar',
-        labelColor: '#000',
-      },
-    ],
+    labelColor: 'text-[#64748b]',
+    hoverLabelColor: 'hover:!text-[#005480] transition duration-200',
+    hoverLinkAnimation: hoverLinkAnimations[0].animation,
   },
   {
     type: 'link',
-    label: 'Contact',
-    path: '/contact',
-    labelColor: '#000',
-    icon: 'mail',
+    label: 'NAVIGATION_LINK_3',
+    path: '/ministries',
+    labelColor: 'text-[#64748b]',
+    hoverLabelColor: 'hover:!text-[#005480] transition duration-200',
+    hoverLinkAnimation: hoverLinkAnimations[0].animation,
+  },
+  {
+    type: 'link',
+    label: 'NAVIGATION_LINK_4',
+    path: '/events',
+    labelColor: 'text-[#64748b]',
+    hoverLabelColor: 'hover:!text-[#005480] transition duration-200',
+    hoverLinkAnimation: hoverLinkAnimations[0].animation,
+  },
+  {
+    type: 'link',
+    label: 'NAVIGATION_LINK_5',
+    path: '/sermons',
+    labelColor: 'text-[#64748b]',
+    hoverLabelColor: 'hover:!text-[#005480] transition duration-200',
+    hoverLinkAnimation: hoverLinkAnimations[0].animation,
+  },
+  {
+    type: 'link',
+    label: 'NAVIGATION_LINK_6',
+    path: '/give',
+    labelColor: 'text-[#64748b]',
+    hoverLabelColor: 'hover:!text-[#005480] transition duration-200',
+    hoverLinkAnimation: hoverLinkAnimations[0].animation,
   },
 ];

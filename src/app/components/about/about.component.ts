@@ -1,26 +1,45 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-
-    <main class="px-4 py-12 max-w-4xl mx-auto">
-      <h1 class="text-3xl font-bold text-gray-900 mb-6">About Us</h1>
-      <p class="text-lg text-gray-700 mb-4">
-        Starter App is a modern Angular template built for speed and flexibility. Whether you're launching a business,
-        portfolio, or blog — this template provides a clean foundation to scale your ideas.
-      </p>
-      <p class="text-lg text-gray-700 mb-4">
-        With customizable components, Tailwind CSS styling, and a focus on responsiveness, it's never been easier to
-        kick off a new project. We believe in simplicity, performance, and developer happiness.
-      </p>
-      <p class="text-lg text-gray-700">
-        Got questions? Feel free to reach out or explore our documentation to learn more.
-      </p>
-    </main>
-  `
+  imports: [CommonModule, TranslateModule, ButtonComponent],
+  templateUrl: './about.component.html',
 })
-export class AboutComponent { }
+export class AboutComponent {
+  leaders = [
+    {
+      name: 'Pastor John Ramirez',
+      role: 'Lead Pastor',
+      photo: '/assets/images/team/pastor-john.jpg',
+    },
+    {
+      name: 'Maria Lopez',
+      role: 'Worship Ministry Leader',
+      photo: '/assets/images/team/maria-lopez.jpg',
+    },
+    {
+      name: 'Carlos Gomez',
+      role: 'Youth Pastor',
+      photo: '/assets/images/team/carlos-gomez.jpg',
+    },
+    {
+      name: 'Elena Rivera',
+      role: 'Women’s Ministry Coordinator',
+      photo: '/assets/images/team/elena-rivera.jpg',
+    },
+    {
+      name: 'David Torres',
+      role: 'Men’s Ministry Leader',
+      photo: '/assets/images/team/david-torres.jpg',
+    },
+    {
+      name: 'Sarah Martinez',
+      role: 'Children’s Ministry Director',
+      photo: '/assets/images/team/sarah-martinez.jpg',
+    },
+  ];
+}

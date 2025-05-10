@@ -25,18 +25,21 @@
 }
 
 ::ng-deep .slick-list {
-  border-radius: 10px; 
+  border-radius: 0px; 
  }
 
 
 .cards ::ng-deep .slick-list {
- border-radius: 10px; 
+ border-radius: 0px; 
  width: calc(100% - 150px);
  margin: 0 auto;
 }
 
 ::ng-deep .slick-slide {
   height: revert-layer;
+  justify-content: center !important;
+  align-items: center !important;
+  display: flex !important;
 }
 
 .cards ::ng-deep .slick-slide {

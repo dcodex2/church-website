@@ -1,14 +1,114 @@
-<main class="px-4 py-12 max-w-7xl mx-auto text-center">
-    <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to Starter App</h1>
-    <p class="text-lg text-gray-600 max-w-xl mx-auto">
-        Build fast, launch faster. This Angular starter template gives you a clean base to launch beautiful responsive
-        websites in minutes.
-    </p>
-    <div class="mt-10 flex justify-center gap-4">
-        <button [style.backgroundColor]=""
-            class="bg-blue-600 text-white px-6 py-3 rounded shadow hover:bg-blue-700 transition cursor-pointer">Get
-            Started</button>
-        <button class="border border-gray-300 px-6 py-3 rounded hover:bg-gray-100 transition cursor-pointer">Learn
-            More</button>
+<main class="">
+    <div class="relative block">
+        <app-content-slider [infinite]="true" [items]="imageSliderArr" [sliderheight]="'!h-[35rem]'" [sliderWrapperStyle]="'!h-[35rem]'"
+            [buttonDesign]="'circle'"></app-content-slider>
     </div>
+</main>
+<main>
+    <!-- Welcome Section -->
+    <section [style.backgroundImage]="'url(' + backgroundImg + ')'" class="py-28 px-6 md:px-12 text-center bg-cover">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold text-[#005480] mb-10">{{ 'HOME_PAGE_WELCOME_HEADER' | translate }}</h2>
+            <p class="text-xl text-gray-700 mb-6 leading-relaxed">
+                {{'HOME_PAGE_WELCOME_P_1' | translate}}
+            </p>
+            <p class="text-xl text-gray-700 mb-6 leading-relaxed">
+                {{'HOME_PAGE_WELCOME_P_2' | translate}}
+            </p>
+            <p class="text-xl text-gray-700 mb-6 leading-relaxed">
+                {{'HOME_PAGE_WELCOME_P_3' | translate}}
+            </p>
+            <app-button [path]="'/about'" [type]="'link'" class="flex justify-center content-center"
+                [defaultClasses]="'hover:!bg-[#004466] transition'" [padding]="'.7rem 1.5rem'"
+                [backgroundColor]="'#005480'" [label]="('HOME_PAGE_WELCOME_BUTTON' | translate)"></app-button>
+        </div>
+    </section>
+    <!-- Prayer Request Section -->
+    <section class="bg-amber-100 py-20 px-6 md:px-12 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005480] mb-4">{{'HOME_PAGE_PRAYER_HEADER' | translate}}</h2>
+            <p class="text-xl text-gray-700 mb-6 leading-relaxed">
+                {{'HOME_PAGE_PRAYER_P1' | translate}}
+            </p>
+            <app-button (buttonClick)="openPrayerRequestPopup()" [path]="'/prayer-request'" [type]="'link'" class="flex justify-center content-center"
+                [defaultClasses]="'hover:!bg-[#004466] transition'" [padding]="'.7rem 1.5rem'"
+                [backgroundColor]="'#005480'" [label]="('HOME_PAGE_PRAYER_BUTTON' | translate)"></app-button>
+
+        </div>
+    </section>
+
+
+    <!-- Latest Message Section -->
+    <section class="py-28 h-auto px-6 md:px-12 text-center">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#005480]">
+                {{'HOME_PAGE_SERMON_HEADER' | translate}}
+            </h2>
+
+            <div class="mt-10 flex justify-center items-center">
+                <app-video-embed [width]="'55rem'" [height]="'30rem'"
+                    [videoUrl]="'https://www.youtube.com/watch?v=isHYimNpEA4'"></app-video-embed>
+            </div>
+
+            <!-- Join Us Message -->
+            <div class="mt-12 space-y-4">
+                <div class="w-24 h-1 mx-auto bg-[#005480] rounded-full"></div>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                   {{'HOME_PAGE_SERMON_DESCRIPTION_1' | translate}}
+                    <span class="text-[#005480] font-semibold">{{'HOME_PAGE_SERMON_DESCRIPTION_1_BLUE'| translate}}</span>
+                </p>
+                <p class="text-base text-gray-600">
+                    {{'HOME_PAGE_SERMON_DESCRIPTION_2' | translate}}
+                </p>
+                <div class="mt-6 text-center">
+                    <app-button [type]="'link'" [path]="'/visit'" class="flex justify-center content-center"
+                        [defaultClasses]="'hover:!bg-[#004466] transition'" [padding]="'.7rem 1.5rem'"
+                        [backgroundColor]="'#005480'" [label]="('HOME_PAGE_SERMON_BUTTON' | translate)"></app-button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Weekly Schedule -->
+    <section class="bg-[#e6f2f5] py-12 px-4 md:px-10 lg:px-20">
+        <h2 class="text-2xl font-bold text-[#005480] mb-6 text-center">📅 {{'HOME_PAGE_SERVICE_SQUEDULE_HEADER' | translate}}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+            <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
+                <h3 class="text-lg font-semibold text-[#005480]">{{'HOME_PAGE_SERVICE_SQUEDULE_DAY_1' | translate}}</h3>
+                <p class="text-gray-600">8:00 PM – 9:00 PM</p>
+            </div>
+            <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
+                <h3 class="text-lg font-semibold text-[#005480]">{{'HOME_PAGE_SERVICE_SQUEDULE_DAY_2' | translate}}</h3>
+                <p class="text-gray-600">8:00 PM – 9:00 PM</p>
+            </div>
+            <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
+                <h3 class="text-lg font-semibold text-[#005480]">{{'HOME_PAGE_SERVICE_SQUEDULE_DAY_3' | translate}}</h3>
+                <p class="text-gray-600">8:00 PM – 9:00 PM</p>
+            </div>
+            <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
+                <h3 class="text-lg font-semibold text-[#005480]">{{'HOME_PAGE_SERVICE_SQUEDULE_DAY_4' | translate}}</h3>
+                <p class="text-gray-600">9:00 AM – 12:00 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-[#fefcf8] py-12 px-6 md:px-12 text-center">
+        <div class=" mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#005480] mb-4">{{'HOME_PAGE_DISCOVER_HEADER' | translate}}</h2>
+            <p class="text-lg text-gray-700 mb-10">
+                {{'HOME_PAGE_DISCOVER_DESCRIPTION' | translate}}
+            </p>
+
+            <!-- Carousel Placeholder -->
+            <div class="relative w-full">
+                <!-- Insert your carousel component here -->
+                <!-- Example: <app-ministry-carousel></app-ministry-carousel> -->
+                <div class="relative block">
+                    <app-content-slider [autoplay]="false" [infinite]="false" type="cards" [slidesToShow]="3" [sliderheight]="'h-102'"
+                        [sliderWrapperStyle]="'h-115 cards'" [items]="infoCards"
+                        [buttonDesign]="'arrow'"></app-content-slider>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>

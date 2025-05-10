@@ -8,13 +8,20 @@ import { CommonModule } from '@angular/common';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { InfoCardComponent } from '../info-card/info-card.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface SlideItems {
-  name: string;
+  title: string;
   description: string;
   url: string;
   captionPosition?: string;
   textAlignment?: 'text-center' | 'text-left' | 'text-right';
+  badge: string;
+  icon?: string;
+  buttonRoute?: string;
+  descriptionFontClasses?: string;
+  titleFontClasses?: string;
+  slideOpacity?: string;
   textAnimation?: string; // e.g. 'fadeIn', 'zoomIn', 'slideUp', etc.
 }
 
@@ -44,7 +51,12 @@ export interface SlideItems {
       ]),
     ]),
   ],
-  imports: [CommonModule, SlickCarouselModule, InfoCardComponent],
+  imports: [
+    CommonModule,
+    SlickCarouselModule,
+    InfoCardComponent,
+    TranslateModule,
+  ],
   styleUrl: './content-slider.component.scss',
   templateUrl: './content-slider.component.html',
 })
@@ -54,7 +66,8 @@ export class ContentSliderComponent implements AfterViewInit {
   @Input() sliderWrapperStyle: string = 'h-150';
   @Input() sliderheight: string = 'h-150';
   @Input() buttonDesign: string = 'circle';
-  @Input() dots: boolean = true;
+  @Input() dots: boolean = false;
+  @Input() infinite: boolean = false;
   @Input() autoplay: boolean = true;
   @Input() autoplaySpeed: number = 5000;
   @Input() showCaption: boolean = true;
@@ -62,8 +75,6 @@ export class ContentSliderComponent implements AfterViewInit {
   @Input() captionAnimation: 'fade' | 'slide' | 'zoom' = 'slide';
   @Input() captionTextAlignment: 'text-center' | 'text-left' | 'text-right' =
     'text-left';
-  @Input() captionTitleClasses: string = '';
-  @Input() captionDescriptionClasses: string = '';
   @Input() type: string = 'image';
   activeIndex: number | undefined = undefined;
   previousIndex = -1;
@@ -71,6 +82,7 @@ export class ContentSliderComponent implements AfterViewInit {
   displaySlider: boolean = false;
   captionVisible = true;
   index: number = 0;
+  isAtEnd: boolean = false;
 
   constructor(private cd: ChangeDetectorRef) {}
 
@@ -88,6 +100,7 @@ export class ContentSliderComponent implements AfterViewInit {
     this.activeIndex = index.currentSlide;
     this.index = index.currentSlide;
     this.captionVisible = true;
+    this.isAtEnd = this.index >= this.items.length - this.slidesToShow;
   }
 
   getCaptionClasses(position: string): string[] {

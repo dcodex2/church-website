@@ -1,26 +1,31 @@
 <div [ngClass]="sliderWrapperStyle">
-    <button *ngIf="items.length > slidesToShow" class="slider-btn-prev">
-        <div (click)="slickModal.slickGoTo(index - 1)" [ngClass]="buttonDesign"><i class="material-icons">arrow_back</i></div>
+    <button *ngIf="items.length > slidesToShow && index > 0 || items.length > slidesToShow && infinite"
+        class="slider-btn-prev">
+        <div (click)="slickModal.slickGoTo(index - 1)" [ngClass]="buttonDesign"><i class="material-icons">arrow_back</i>
+        </div>
     </button>
-    <button *ngIf="items.length > slidesToShow" class="slider-btn-next">
-        <div (click)="slickModal.slickGoTo(index + 1)" [ngClass]="buttonDesign"><i class="material-icons">arrow_forward</i></div>
+    <button *ngIf="items.length > slidesToShow && !isAtEnd || items.length > slidesToShow && infinite"
+        class="slider-btn-next">
+        <div (click)="slickModal.slickGoTo(index + 1)" [ngClass]="buttonDesign"><i
+                class="material-icons">arrow_forward</i></div>
     </button>
-
-
     <ngx-slick-carousel class="carousel" (beforeChange)="onBeforeSlide()" (afterChange)="onAfterSlide($event)"
         #slickModal="slick-carousel" [config]="{
         slidesToShow: this.slidesToShow,
         dots: this.dots && type === 'image',
         autoplay: this.autoplay,
         autoplaySpeed: this.autoplaySpeed,
-        arrows: false
+        arrows: false,
+        infinite: infinite
       }">
-        <div ngxSlickItem *ngFor="let item of items; let i = index" class="relative w-full item" [ngClass]="sliderheight">
-
+        <div ngxSlickItem *ngFor="let item of items; let i = index" class="relative w-full item"
+            [ngClass]="sliderheight">
             <div *ngIf="type === 'image'">
-                <div class="bg-black/20 w-full h-full absolute"></div>
+                <div [style.opacity]="item.slideOpacity ? item.slideOpacity : '0'"
+                    class="bg-black w-full h-full absolute top-0" [ngClass]="sliderheight"></div>
                 <!-- Image -->
-                <img [src]="item.url" alt="{{ item.name }}" class="w-full h-full object-cover object-center bg-black" />
+                <img [src]="item.url" alt="{{ item.title }}"
+                    class="w-full h-full object-cover object-[50%_50%] bg-black" />
 
                 <!-- Overlay text -->
                 <div *ngIf="showCaption" class="absolute flex w-full h-full px-4 text-white" [ngClass]="
@@ -30,19 +35,19 @@
                         class="absolute flex w-full h-full px-4 text-white"
                         [ngClass]="getCaptionClasses(item.captionPosition || defaultCaptionPosition)" @slideUpCaption>
                         <div [ngClass]="item.textAlignment || captionTextAlignment" class="drop-shadow-md">
-                            <h5 [ngClass]="captionTitleClasses ? captionTitleClasses : 'text-xl font-semibold'">{{
-                                item.name }}</h5>
-                            <p [ngClass]="captionDescriptionClasses ? captionDescriptionClasses : 'text-gray-200 mt-2'">
-                                {{ item.description }}</p>
+                            <h5 [ngClass]="item.titleFontClasses ? item.titleFontClasses : 'text-xl font-semibold'">{{
+                                item.title | translate }}</h5>
+                            <p
+                                [ngClass]="item.descriptionFontClasses ? item.descriptionFontClasses : 'text-gray-200 mt-2'">
+                                {{ item.description | translate }}</p>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div *ngIf="type === 'cards'">
-                <app-info-card [image]="item.url" title="Build Faster"
-                    description="Speed up your web projects with reusable Angular components." buttonLabel="Learn More"
-                    buttonRoute="/learn-more" badge="New" icon="bolt">
+                <app-info-card [image]="item.url" [title]="(item.title | translate)" [description]="(item.description | translate)"
+                    [buttonLabel]="'LEARN_MORE_BTN' | translate" [buttonRoute]="item.buttonRoute" [badge]="item.badge"
+                    [icon]="item.icon">
                 </app-info-card>
             </div>
         </div>
