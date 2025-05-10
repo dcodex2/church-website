@@ -30,7 +30,7 @@ jobs:
       - name: Install Firebase Functions dependencies
         run: |
           cd functions
-          npm ci
+          npm install
 
       - name: Build Firebase Functions (SSR)
         run: |
