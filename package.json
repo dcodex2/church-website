@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:church-website-template-basic": "node dist/church-website-template-basic/server/server.mjs"
+    "serve:ssr:church-website-template-basic": "node dist/church-website-template-basic/server/server.mjs",
+    "build:ssr": "ng build && ng run church-website-template-basic:server"
   },
   "private": true,
   "dependencies": {
