@@ -1,19 +1,18 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import { onRequest } from 'firebase-functions/v2/https';
+const express = require('express');
+import { join } from 'path';
 
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+// Load the Angular Universal server bundle
+const distFolder = join(process.cwd(), 'dist/server');
+const app = require(`${distFolder}/main`).app;
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+const server = express();
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// Serve static assets from the browser output
+server.use(express.static(join(process.cwd(), 'dist/browser')));
+
+// All other routes handled by Angular SSR
+server.get('*', app);
+
+// Export the SSR Cloud Function
+export const ssr = onRequest({ region: 'us-central1' }, server);
