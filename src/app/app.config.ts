@@ -1,8 +1,9 @@
 import {
-  APP_INITIALIZER,
   ApplicationConfig,
   importProvidersFrom,
   provideZoneChangeDetection,
+  PLATFORM_ID,
+  inject,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
@@ -13,12 +14,14 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { isPlatformServer } from '@angular/common';
+import { SsrTranslateLoader } from './ssr-translate-loader';
 import { loadTranslations } from './translation.loader';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  const platformId = inject(PLATFORM_ID);
+  return new SsrTranslateLoader(http, platformId);
 }
 
 export const appConfig: ApplicationConfig = {
@@ -39,6 +42,7 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
+    // optional: remove if not needed
     {
       provide: 'APP_BOOTSTRAP_INITIALIZER',
       useValue: loadTranslations,
