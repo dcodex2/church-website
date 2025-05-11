@@ -10,8 +10,11 @@ export async function loadTranslations(): Promise<void> {
   const loader = new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
   const lang = 'en';
-  const translations = await firstValueFrom(loader.getTranslation(lang));
-  await firstValueFrom(loader.getTranslation(lang).pipe(timeout(10000)));
+
+  // ✅ Add timeout directly here
+  const translations = await firstValueFrom(
+    loader.getTranslation(lang).pipe(timeout(10000))
+  );
 
   translate.setTranslation(lang, translations);
   translate.setDefaultLang(lang);
