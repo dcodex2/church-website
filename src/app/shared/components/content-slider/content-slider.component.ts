@@ -120,7 +120,6 @@ export class ContentSliderComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.activeIndex = 0;
-      this.slickModal?.slickPlay();
     }, 1000);
   }
   onBeforeSlide(): void {

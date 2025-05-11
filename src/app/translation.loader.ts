@@ -9,8 +9,10 @@ export async function loadTranslations(): Promise<void> {
   const translate = inject(TranslateService);
   const loader = new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
-  const translations = await firstValueFrom(loader.getTranslation('en'));
-  translate.setTranslation('en', translations);
-  translate.setDefaultLang('en');
-  translate.use('en');
+  const lang = 'en';
+  const translations = await firstValueFrom(loader.getTranslation(lang));
+
+  translate.setTranslation(lang, translations);
+  translate.setDefaultLang(lang);
+  translate.use(lang);
 }

@@ -4,6 +4,7 @@ import {
   provideZoneChangeDetection,
   PLATFORM_ID,
   inject,
+  APP_INITIALIZER,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
@@ -42,11 +43,11 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
-    // optional: remove if not needed
     {
-      provide: 'APP_BOOTSTRAP_INITIALIZER',
-      useValue: loadTranslations,
+      provide: APP_INITIALIZER,
+      useFactory: () => loadTranslations,
       multi: true,
+      deps: [],
     },
   ],
 };

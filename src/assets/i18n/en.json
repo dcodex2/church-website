@@ -101,5 +101,11 @@
   "ABOUT_PAGE_TEAM_HEADER": "Meet Our Leadership Team",
   "ABOUT_PAGE_INVITE_HEADER": "Join Us On the Journey",
   "ABOUT_PAGE_INVITE_TEXT": "Whether you're exploring faith or looking for a church family, there's a place for you here.",
-  "ABOUT_PAGE_INVITE_BUTTON": "Plan Your Visit"
+  "ABOUT_PAGE_INVITE_BUTTON": "Plan Your Visit",
+
+  "SLIDER_HEADER": "Our Ministry Slides",
+  "SLIDE_1_TITLE": "Youth Ministry",
+  "SLIDE_1_DESC": "Empowering the next generation.",
+  "SLIDE_2_TITLE": "Community Service",
+  "SLIDE_2_DESC": "Serving with purpose and love."
 }

@@ -36,7 +36,8 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss",
               "node_modules/slick-carousel/slick/slick.css",
-              "node_modules/slick-carousel/slick/slick-theme.css"
+              "node_modules/slick-carousel/slick/slick-theme.css",
+              "node_modules/swiper/swiper-bundle.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -141,7 +142,8 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss",
               "node_modules/slick-carousel/slick/slick.css",
-              "node_modules/slick-carousel/slick/slick-theme.css"
+              "node_modules/slick-carousel/slick/slick-theme.css",
+              "node_modules/swiper/swiper-bundle.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

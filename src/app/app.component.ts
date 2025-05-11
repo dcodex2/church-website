@@ -10,6 +10,7 @@ import {
 } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { SwiperComponent } from './shared/components/swiper/swiper.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     FooterComponent,
     HeaderComponent,
     TranslateModule,
+    SwiperComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -54,6 +56,7 @@ export class AppComponent {
       ],
     },
   ];
+  translationsReady: boolean = false;
 
   constructor(private translate: TranslateService) {
     translate.addLangs(['en', 'es']);

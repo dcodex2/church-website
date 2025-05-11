@@ -9,6 +9,7 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 import { PopupTemplateRegistryService } from '../../shared/services/popup-template-registry.service';
 import { PopupService } from '../../shared/services/popup/popup.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { SwiperComponent } from '../../shared/components/swiper/swiper.component';
 
 export interface CalendarConfig {
   theme?: 'light' | 'dark';
@@ -23,6 +24,7 @@ export interface CalendarConfig {
     VideoEmbedComponent,
     ButtonComponent,
     TranslateModule,
+    SwiperComponent,
   ],
   templateUrl: './home.component.html',
 })
