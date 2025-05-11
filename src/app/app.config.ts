@@ -16,13 +16,11 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { isPlatformServer } from '@angular/common';
-import { SsrTranslateLoader } from './ssr-translate-loader';
 import { loadTranslations } from './translation.loader';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  const platformId = inject(PLATFORM_ID);
-  return new SsrTranslateLoader(http, platformId);
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 export const appConfig: ApplicationConfig = {
