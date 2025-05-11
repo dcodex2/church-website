@@ -91,6 +91,7 @@
         "prerender": {
           "builder": "@angular-devkit/build-angular:prerender",
           "options": {
+            "timeout": 60000,
             "browserTarget": "church-website-template-basic:build:production",
             "serverTarget": "church-website-template-basic:server:production",
             "routes": [

@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, timeout } from 'rxjs';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export async function loadTranslations(): Promise<void> {
@@ -11,6 +11,7 @@ export async function loadTranslations(): Promise<void> {
 
   const lang = 'en';
   const translations = await firstValueFrom(loader.getTranslation(lang));
+  await firstValueFrom(loader.getTranslation(lang).pipe(timeout(10000)));
 
   translate.setTranslation(lang, translations);
   translate.setDefaultLang(lang);
