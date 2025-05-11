@@ -10,26 +10,7 @@
                 class="material-icons">arrow_forward</i></div>
     </button>
     <ngx-slick-carousel class="carousel" (beforeChange)="onBeforeSlide()" (afterChange)="onAfterSlide($event)"
-        #slickModal="slick-carousel" [config]="{
-        slidesToShow: this.slidesToShow,
-        dots: this.dots && type === 'image',
-        autoplay: this.autoplay,
-        autoplaySpeed: this.autoplaySpeed,
-        arrows: false,
-        infinite: infinite,
-        responsive: [    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: type === 'image' ? this.slidesToShow : 2
-      }
-    },    {
-      breakpoint: 640,
-      settings: {
-        slidesToShow: 1
-      }
-    }]
-        
-      }">
+        #slickModal="slick-carousel" [config]="config">
         <div ngxSlickItem *ngFor="let item of items; let i = index" class="relative w-full item"
             [ngClass]="sliderheight">
             <div *ngIf="type === 'image'">

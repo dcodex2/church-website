@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ComponentUsageComponent } from './shared/components/component-usage/component-usage.component';
 import { PopupTemplatesComponent } from './shared/components/popup-templates/popup-templates.component';
@@ -55,19 +55,12 @@ export class AppComponent {
     },
   ];
 
-  translateReady = false;
-  translateInjection = inject(TranslateService);
-
   constructor(private translate: TranslateService) {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('en');
 
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang?.match(/en|es/) ? browserLang : 'en');
-
-    this.translateInjection.use('en').subscribe(() => {
-      this.translateReady = true;
-    });
   }
 
   switchLang(lang: string) {

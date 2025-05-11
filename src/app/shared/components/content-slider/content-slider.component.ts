@@ -3,9 +3,14 @@ import {
   Component,
   Input,
   ChangeDetectorRef,
+  OnInit,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
+import {
+  SlickCarouselComponent,
+  SlickCarouselModule,
+} from 'ngx-slick-carousel';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { InfoCardComponent } from '../info-card/info-card.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -60,7 +65,8 @@ export interface SlideItems {
   styleUrl: './content-slider.component.scss',
   templateUrl: './content-slider.component.html',
 })
-export class ContentSliderComponent implements AfterViewInit {
+export class ContentSliderComponent implements AfterViewInit, OnInit {
+  @ViewChild('slickModal') slickModal!: SlickCarouselComponent;
   @Input() items: SlideItems[] = [];
   @Input() slidesToShow: number = 1;
   @Input() sliderWrapperStyle: string = 'h-150';
@@ -83,12 +89,38 @@ export class ContentSliderComponent implements AfterViewInit {
   captionVisible = true;
   index: number = 0;
   isAtEnd: boolean = false;
+  config: any;
 
   constructor(private cd: ChangeDetectorRef) {}
+  ngOnInit(): void {
+    this.config = {
+      slidesToShow: this.slidesToShow,
+      dots: this.dots && this.type === 'image',
+      autoplay: false,
+      autoplaySpeed: this.autoplaySpeed,
+      arrows: false,
+      infinite: this.infinite,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: this.type === 'image' ? this.slidesToShow : 2,
+          },
+        },
+        {
+          breakpoint: 640,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
+    };
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.activeIndex = 0;
+      this.slickModal?.slickPlay();
     }, 1000);
   }
   onBeforeSlide(): void {

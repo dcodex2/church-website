@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ContentSliderComponent,
@@ -26,7 +26,7 @@ export interface CalendarConfig {
   ],
   templateUrl: './home.component.html',
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit, OnInit {
   backgroundImg: string =
     '/assets/images/curvy-blue-wave-lines-background-presentation-backdrop.jpg';
   imageSliderArr: SlideItems[] = [
@@ -130,11 +130,20 @@ export class HomeComponent {
       badge: '',
     },
   ];
+  translateReady = false;
 
   constructor(
     private popup: PopupService,
     private registry: PopupTemplateRegistryService
   ) {}
+
+  ngOnInit(): void {
+    // setTimeout(() => {
+    //   this.translateReady = true;
+    //   console.log(this.translateReady);
+    // }, 100);
+  }
+  ngAfterViewInit(): void {}
 
   openPrayerRequestPopup() {
     const template = this.registry.getTemplate('prayerTemplate');
