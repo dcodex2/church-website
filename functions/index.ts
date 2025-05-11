@@ -5,11 +5,11 @@ import { readFileSync } from 'fs';
 
 const distFolder = join(
   __dirname,
-  '../../dist/church-website-template-basic/server'
+  '../dist/church-website-template-basic/server'
 );
 const browserFolder = join(
   __dirname,
-  '../../dist/church-website-template-basic/browser'
+  '/../dist/church-website-template-basic/browser'
 );
 const indexHtml = readFileSync(join(browserFolder, 'index.html'), 'utf-8');
 
