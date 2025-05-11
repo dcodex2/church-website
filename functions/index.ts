@@ -3,13 +3,6 @@ import express from 'express';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-// Needed for __dirname in ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 const distFolder = join(
   __dirname,
   '../dist/church-website-template-basic/server'
