@@ -7,6 +7,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   ViewChild,
   ElementRef,
+  Renderer2,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfoCardComponent } from '../info-card/info-card.component';
@@ -53,19 +54,30 @@ export class SwiperComponent implements OnInit, AfterViewInit {
   activeIndex = 0;
   captionVisible = true;
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef, private renderer: Renderer2) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.items);
+  }
 
   ngAfterViewInit(): void {
-    if (this.swiperEl?.nativeElement?.initialize) {
-      this.swiperEl.nativeElement.initialize();
+    const swiperElement = this.swiperEl?.nativeElement;
+
+    if (swiperElement?.initialize) {
+      swiperElement.initialize();
     }
-    setTimeout(() => {
-      this.activeIndex = 0;
+
+    this.renderer.listen(swiperElement, 'slidechange', () => {
+      this.activeIndex = swiperElement.swiper.activeIndex;
       this.captionVisible = true;
       this.cd.detectChanges();
     });
+
+    setTimeout(() => {
+      this.activeIndex = swiperElement?.swiper?.activeIndex || 0;
+      this.captionVisible = true;
+      this.cd.detectChanges();
+    }, 100);
   }
 
   get autoplayConfig(): string | null {
