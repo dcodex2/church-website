@@ -16,7 +16,19 @@
         autoplay: this.autoplay,
         autoplaySpeed: this.autoplaySpeed,
         arrows: false,
-        infinite: infinite
+        infinite: infinite,
+        responsive: [    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2
+      }
+    },    {
+      breakpoint: 640,
+      settings: {
+        slidesToShow: 1
+      }
+    }]
+        
       }">
         <div ngxSlickItem *ngFor="let item of items; let i = index" class="relative w-full item"
             [ngClass]="sliderheight">
@@ -45,9 +57,9 @@
                 </div>
             </div>
             <div *ngIf="type === 'cards'">
-                <app-info-card [image]="item.url" [title]="(item.title | translate)" [description]="(item.description | translate)"
-                    [buttonLabel]="'LEARN_MORE_BTN' | translate" [buttonRoute]="item.buttonRoute" [badge]="item.badge"
-                    [icon]="item.icon">
+                <app-info-card [image]="item.url" [title]="(item.title | translate)"
+                    [description]="(item.description | translate)" [buttonLabel]="'LEARN_MORE_BTN' | translate"
+                    [buttonRoute]="item.buttonRoute" [badge]="item.badge" [icon]="item.icon">
                 </app-info-card>
             </div>
         </div>

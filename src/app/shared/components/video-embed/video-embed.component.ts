@@ -7,25 +7,19 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="w-full" [ngStyle]="{ width: width, height: height }">
+    <div class="w-full aspect-video relative rounded-lg overflow-hidden">
       <iframe
         *ngIf="embedUrl"
-        [src]="embedUrl"
-        [width]="width"
-        [height]="height"
+        [attr.src]="embedUrl"
         frameborder="0"
         allowfullscreen
-        class="rounded-lg w-full h-full"
-      >
-      </iframe>
+        class="absolute top-0 left-0 w-full h-full"
+      ></iframe>
     </div>
   `,
 })
 export class VideoEmbedComponent implements OnChanges {
   @Input() videoUrl!: string;
-  @Input() width: string = '100%';
-  @Input() height: string = '360px';
-
   embedUrl: SafeResourceUrl | null = null;
 
   constructor(private sanitizer: DomSanitizer) {}
