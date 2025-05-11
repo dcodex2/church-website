@@ -26,7 +26,4 @@ server.get('*', async (req, res, next) => {
   }
 });
 
-export const ssr = onRequest(
-  { region: 'us-central1', timeoutSeconds: 60 },
-  server
-);
+export const ssr = onRequest({ region: 'us-central1' }, server);
