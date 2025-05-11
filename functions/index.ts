@@ -9,7 +9,7 @@ const distFolder = join(
 );
 const browserFolder = join(
   __dirname,
-  '/../dist/church-website-template-basic/browser'
+  '../dist/church-website-template-basic/browser'
 );
 const indexHtml = readFileSync(join(browserFolder, 'index.html'), 'utf-8');
 
