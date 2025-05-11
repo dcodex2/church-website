@@ -18,7 +18,8 @@ server.use(express.static(browserFolder));
 
 server.get('*', async (req, res, next) => {
   try {
-    const { app } = await import(`${distFolder}/main.server.mjs`);
+    // Import main.js instead of main.server.mjs
+    const { app } = await import(`${distFolder}/main.js`);
     return app(req, res, next);
   } catch (err) {
     console.error('[SSR] Failed to handle request:', err);
