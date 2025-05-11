@@ -1,24 +1,61 @@
-<h2 class="text-xl font-bold text-center mb-4">
-    {{ 'SLIDER_HEADER' | translate }}
-  </h2>
-  
+<div [ngClass]="sliderWrapperStyle" class="relative">
   <swiper-container
-    slides-per-view="1"
-    loop="true"
-    pagination="true"
-    navigation="true"
-    autoplay-delay="2500"
-    autoplay="true"
-    class="w-full max-w-2xl mx-auto"
+  #swiperEl
+    [attr.slides-per-view]="slidesToShow"
+    [attr.autoplay]="autoplayConfig"
+    [attr.loop]="infinite"
+    [attr.loop]="true"
+    [attr.pagination]="type === 'image'"
+    [attr.space-between]="20"
+    class="w-full h-full"
+    init="false"
   >
-    <swiper-slide class="p-6 bg-[#fefcf8] text-center border rounded shadow">
-      <h3 class="text-lg font-semibold text-[#005480]">{{ 'SLIDE_1_TITLE' | translate }}</h3>
-      <p class="text-gray-600 mt-2">{{ 'SLIDE_1_DESC' | translate }}</p>
-    </swiper-slide>
-  
-    <swiper-slide class="p-6 bg-[#fefcf8] text-center border rounded shadow">
-      <h3 class="text-lg font-semibold text-[#005480]">{{ 'SLIDE_2_TITLE' | translate }}</h3>
-      <p class="text-gray-600 mt-2">{{ 'SLIDE_2_DESC' | translate }}</p>
-    </swiper-slide>
+    <ng-container *ngFor="let item of items; let i = index">
+      <swiper-slide class="relative w-full" [ngClass]="sliderheight">
+        <ng-container *ngIf="type === 'image'">
+          <div
+            [style.opacity]="item.slideOpacity || '0'"
+            class="absolute inset-0 bg-black pointer-events-none"
+          ></div>
+
+          <img
+            [src]="item.url"
+            [alt]="item.title"
+            class="w-full h-full object-cover object-center bg-black"
+          />
+
+          <div
+            *ngIf="showCaption"
+            class="absolute w-full h-full px-4 text-white"
+            [ngClass]="getCaptionClasses(item.captionPosition || defaultCaptionPosition)"
+          >
+            <div
+              *ngIf="i === activeIndex && captionVisible"
+              [ngClass]="item.textAlignment || captionTextAlignment"
+              class="drop-shadow-md"
+            >
+              <h5 [ngClass]="item.titleFontClasses || 'text-xl font-semibold'">
+                {{ item.title | translate }}
+              </h5>
+              <p [ngClass]="item.descriptionFontClasses || 'text-gray-200 mt-2'">
+                {{ item.description | translate }}
+              </p>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="type === 'cards'">
+          <app-info-card
+            [image]="item.url"
+            [title]="item.title | translate"
+            [description]="item.description | translate"
+            [buttonLabel]="'LEARN_MORE_BTN' | translate"
+            [buttonRoute]="item.buttonRoute"
+            [badge]="item.badge"
+            [icon]="item.icon"
+          ></app-info-card>
+        </ng-container>
+      </swiper-slide>
+    </ng-container>
   </swiper-container>
-  
+</div>

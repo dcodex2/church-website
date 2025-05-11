@@ -1,8 +1,23 @@
 <main class="">
-    <div class="relative block">
+    <!-- <div class="relative block">
         <app-content-slider [infinite]="true" [items]="imageSliderArr" [sliderheight]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'" [sliderWrapperStyle]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'"
             [buttonDesign]="'circle'"></app-content-slider>
-    </div>
+    </div> -->
+    <app-swiper
+  [items]="imageSliderArr"
+  [autoplay]="true"
+  [autoplaySpeed]="5000"
+  [infinite]="true"
+  [sliderheight]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'"
+  [sliderWrapperStyle]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'"
+  [buttonDesign]="'circle'"
+  [slidesToShow]="1"
+  [captionTextAlignment]="'text-left'"
+  [showCaption]="true"
+  [defaultCaptionPosition]="'bottom-left'"
+  type="image"
+></app-swiper>
+
 </main>
 <main>
     <!-- Welcome Section -->
@@ -124,7 +139,7 @@
         {{ 'HOME_PAGE_DISCOVER_DESCRIPTION' | translate }}
       </p>
   
-      <div class="relative w-full">
+      <!-- <div class="relative w-full">
         <div class="relative block">
           <app-content-slider
             [autoplay]="false"
@@ -137,7 +152,7 @@
             [buttonDesign]="'arrow'"
           ></app-content-slider>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 </main>
