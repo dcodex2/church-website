@@ -69,7 +69,7 @@ export class ContentSliderComponent implements AfterViewInit {
   @Input() dots: boolean = false;
   @Input() infinite: boolean = false;
   @Input() autoplay: boolean = true;
-  @Input() autoplaySpeed: number = 5000;
+  @Input() autoplaySpeed: number = 500000;
   @Input() showCaption: boolean = true;
   @Input() defaultCaptionPosition: string = 'bottom-left';
   @Input() captionAnimation: 'fade' | 'slide' | 'zoom' = 'slide';

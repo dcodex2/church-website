@@ -1,4 +1,5 @@
 import {
+  APP_INITIALIZER,
   ApplicationConfig,
   importProvidersFrom,
   provideZoneChangeDetection,
@@ -10,13 +11,11 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { HttpClient } from '@angular/common/http';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { SsrTranslateLoader } from './ssr-translate-loader';
-import { PLATFORM_ID } from '@angular/core';
+import { loadTranslations } from './translation.loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,17 +28,21 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
-    // Required for translation
     importProvidersFrom(
+      HttpClientModule,
       TranslateModule.forRoot({
+        defaultLanguage: 'en',
         loader: {
           provide: TranslateLoader,
-          useFactory: (http: HttpClient, platformId: Object) =>
-            new SsrTranslateLoader(http, platformId),
-          deps: [HttpClient, PLATFORM_ID],
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient],
         },
-        defaultLanguage: 'en',
       })
     ),
+    {
+      provide: 'APP_BOOTSTRAP_INITIALIZER',
+      useValue: loadTranslations,
+      multi: true,
+    },
   ],
 };

@@ -19,6 +19,7 @@ import {
       [style.backgroundColor]="backgroundColor"
       [style.color]="textColor"
       [style.fontFamily]="fontFamily"
+      class="py-4 sm:pb-0"
       [ngClass]="
         [
           layout === 'horizontal' ? 'w-full' : 'w-full flex flex-col',
@@ -33,21 +34,27 @@ import {
             : ''
         ].join(' ')
       "
-      [style.paddingTop]="paddingTop"
-      [style.paddingBottom]="paddingBottom"
     >
       <div
-        class="max-w-7xl mx-auto w-full"
+        class="max-w-7xl mx-auto w-full relative"
         [ngClass]="[
           layout === 'horizontal'
-            ? 'flex items-center justify-between px-4'
+            ? 'flex items-center md:justify-between justify-start px-4'
             : 'flex flex-col items-center gap-4 px-4',
           centerLogo ? 'grid !justify-center' : 'block'
         ]"
       >
+        <!-- 🍔 Mobile Menu Icon -->
+        <div class="md:hidden absolute left-4 top-1/2 -translate-y-1/2">
+          <button (click)="toggleMobileMenu()" class="flex items-center">
+            <i class="material-icons text-2xl">menu</i>
+          </button>
+        </div>
+
+        <!-- 🔰 Logo -->
         <a
           [style.height.px]="logoHeight"
-          class="flex items-center gap-2 cursor-pointer"
+          class="flex items-center gap-2 cursor-pointer w-full md:w-auto justify-center md:justify-start"
           [ngClass]="
             [
               logoPosition === 'right' ? 'order-last' : 'order-first',
@@ -69,10 +76,12 @@ import {
           }}</span>
         </a>
 
+        <!-- 🧭 Desktop Navigation -->
         <div class="hidden md:block">
           <app-navigation></app-navigation>
         </div>
 
+        <!-- 📢 CTA Button -->
         <div *ngIf="showCTAButton" class="ml-4 hidden md:block">
           <button
             [ngStyle]="ctaButtonStyles"
@@ -81,17 +90,9 @@ import {
             {{ ctaButtonLabel }}
           </button>
         </div>
-
-        <button
-          class="md:hidden"
-          [ngClass]="drawerBtnPosition === 'right' ? 'ml-auto' : 'mr-auto'"
-          (click)="toggleMobileMenu()"
-        >
-          <i class="material-icons">menu</i>
-        </button>
       </div>
 
-      <!-- Mobile Navigation Drawer -->
+      <!-- 📱 Mobile Navigation Drawer -->
       <div
         *ngIf="mobileMenuOpen"
         [@slideInOut]="drawerSide === 'left' ? 'in' : null"
@@ -104,7 +105,10 @@ import {
             <i class="material-icons">close</i>
           </button>
         </div>
-        <app-navigation [layout]="'vertical'"></app-navigation>
+        <app-navigation
+          (onNavigationClicked)="toggleMobileMenu()"
+          [layout]="'vertical'"
+        ></app-navigation>
       </div>
     </header>
   `,

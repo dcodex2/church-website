@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {
@@ -21,6 +21,8 @@ export class NavigationComponent {
   navItems: NavItem[] = NavigationConfig;
   settings = NavigationSettings;
   @Input() layout?: string;
+  @Output() onNavigationClicked = new EventEmitter<any>();
+
   show = true;
 
   // Layout class based on settings

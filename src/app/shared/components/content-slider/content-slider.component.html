@@ -20,7 +20,7 @@
         responsive: [    {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 2
+        slidesToShow: type === 'image' ? this.slidesToShow : 2
       }
     },    {
       breakpoint: 640,
@@ -33,11 +33,17 @@
         <div ngxSlickItem *ngFor="let item of items; let i = index" class="relative w-full item"
             [ngClass]="sliderheight">
             <div *ngIf="type === 'image'">
-                <div [style.opacity]="item.slideOpacity ? item.slideOpacity : '0'"
-                    class="bg-black w-full h-full absolute top-0" [ngClass]="sliderheight"></div>
-                <!-- Image -->
-                <img [src]="item.url" alt="{{ item.title }}"
-                    class="w-full h-full object-cover object-[50%_50%] bg-black" />
+                <div
+                [style.opacity]="item.slideOpacity || '0'"
+                class="absolute inset-0 bg-black pointer-events-none"
+              ></div>
+              
+              <!-- Image -->
+              <img
+                [src]="item.url"
+                alt="{{ item.title }}"
+                class="w-full h-full object-cover object-center bg-black"
+              />
 
                 <!-- Overlay text -->
                 <div *ngIf="showCaption" class="absolute flex w-full h-full px-4 text-white" [ngClass]="
