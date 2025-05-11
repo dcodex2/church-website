@@ -13,25 +13,24 @@ const browserFolder = join(
 );
 const indexHtml = readFileSync(join(browserFolder, 'index.html')).toString();
 
-let app: any;
+let ssrHandler: express.RequestHandler;
 
 const server = express();
 server.use(express.static(browserFolder));
 
-// Middleware that waits for SSR app to load before handling requests
 server.get('*', async (req, res, next) => {
-  if (!app) {
-    try {
-      const module = await import(`${distFolder}/main.server.mjs`);
-      app = module.app || module.default?.app || module.default;
-    } catch (err) {
-      console.error('SSR module load failed:', err);
-      return res.status(500).send(indexHtml); // fallback to index.html
+  try {
+    if (!ssrHandler) {
+      const { app } = await import(`${distFolder}/main.server.mjs`);
+      ssrHandler = app;
     }
-  }
 
-  return app(req, res, next);
+    ssrHandler(req, res, next);
+  } catch (err) {
+    console.error('[SSR] Error loading handler', err);
+    res.status(500).send(indexHtml);
+  }
 });
 
-// Export Firebase HTTPS Function
+// ✅ Must export `onRequest` with final ready-to-go `express` app
 export const ssr = onRequest({ region: 'us-central1' }, server);
