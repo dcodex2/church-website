@@ -1,5 +1,4 @@
 import 'zone.js/node';
-
 import { renderApplication } from '@angular/platform-server';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
@@ -30,6 +29,6 @@ app.get('*', async (req, res) => {
     res.status(200).send(html);
   } catch (err) {
     console.error('SSR error:', err);
-    res.status(500).send('Server error');
+    res.status(500).send('Internal server error');
   }
 });
