@@ -123,6 +123,7 @@ export class SwiperComponent implements OnInit {
       this.swiperConfig.spaceBetween = 20;
       this.swiperConfig.breakpoints = this.breakpointsConfig;
       this.swiperConfig.navigation = false;
+      this.swiperConfig.loop = this.infinite;
     }
     this.swiperConfig.slidesPerView = this.slidesToShow;
   }
