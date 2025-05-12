@@ -1,5 +1,22 @@
 <div [ngClass]="sliderWrapperStyle" class="relative">
-  <swiper-container #swiper appSwiper [config]="swiperConfig" (swiperslidechange)="slideChange($event)" class="w-full h-full"
+  <div class="absolute top-0 bottom-0 w-full translate-y-[-20px]">
+    <!-- Prev Button -->
+    <button *ngIf="!infinite && !isAtBeginning"
+      class="absolute left-[-2rem] top-1/2 -translate-y-1/2 z-10"
+      (click)="goPrev()"
+    >
+      <i class="material-icons text-black text-3xl">arrow_back</i>
+    </button>
+  
+    <!-- Next Button -->
+    <button *ngIf="!infinite && !isAtEnd"
+      class="absolute right-[-2rem] top-1/2 -translate-y-1/2 z-10"
+      (click)="goNext()"
+    >
+      <i class="material-icons text-black text-3xl">arrow_forward</i>
+    </button>
+  </div>
+  <swiper-container #swiper appSwiper [config]="swiperConfig" (swiperslidechange)="slideChange($event)" class="swiper w-full h-full"
     init="false">
     <ng-container *ngFor="let item of items; let i = index">
       <swiper-slide class="relative w-full" [ngClass]="sliderheight">
@@ -24,7 +41,7 @@
         </ng-container>
 
         <ng-container *ngIf="type === 'cards'">
-          <app-info-card [image]="item.url" [title]="item.title | translate"
+          <app-info-card [image]="item.url" [title]="item.title | translate" class="px-8 pb-8 flex content-center justify-center"
             [description]="item.description | translate" [buttonLabel]="'LEARN_MORE_BTN' | translate"
             [buttonRoute]="item.buttonRoute" [badge]="item.badge" [icon]="item.icon"></app-info-card>
         </ng-container>

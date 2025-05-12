@@ -64,7 +64,7 @@ export interface SlideItems {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // ✅ Add this line
 })
-export class SwiperComponent implements OnInit, AfterViewInit {
+export class SwiperComponent implements OnInit {
   @ViewChild('swiper') swiper!: ElementRef<SwiperContainer>;
   @ViewChild('swiperEl', { static: true }) swiperEl!: ElementRef;
   @Input() items: SlideItems[] = [];
@@ -79,23 +79,53 @@ export class SwiperComponent implements OnInit, AfterViewInit {
   @Input() captionTextAlignment: 'text-center' | 'text-left' | 'text-right' =
     'text-left';
   @Input() type: 'image' | 'cards' = 'image';
-  @Input() infinite: boolean = false;
-
-  activeIndex = 0;
+  @Input() infinite: boolean = true;
+  breakpointsConfig: any;
+  isAtEnd: boolean = false;
+  isAtBeginning: boolean = true;
+  activeIndex: number = 0;
   captionVisible = true;
   captionAnimation: any;
   captionState: any;
   swiperConfig: SwiperOptions = {
-    spaceBetween: 10,
+    spaceBetween: 0,
     navigation: true,
+    loop: this.infinite,
+    init: true,
   };
-  constructor(private cd: ChangeDetectorRef, private renderer: Renderer2) {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    console.log(this.items);
-  }
+    if (this.type === 'cards') {
+      this.swiperConfig.spaceBetween = 20;
+      this.swiperConfig.breakpoints = this.breakpointsConfig;
+      this.swiperConfig.navigation = false;
+    }
+    this.swiperConfig.slidesPerView = this.slidesToShow;
 
-  ngAfterViewInit() {}
+    this.breakpointsConfig = {
+      0: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 16,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 24,
+      },
+      1280: {
+        slidesPerView: this.slidesToShow,
+        spaceBetween: 28,
+      },
+    };
+  }
 
   get autoplayConfig(): string | null {
     return this.autoplay ? JSON.stringify({ delay: this.autoplaySpeed }) : null;
@@ -118,19 +148,28 @@ export class SwiperComponent implements OnInit, AfterViewInit {
   }
 
   goNext() {
-    const swiper = this.swiperEl?.nativeElement.swiper;
+    const swiper = this.swiper?.nativeElement.swiper;
     swiper?.slideNext();
   }
 
   goPrev() {
-    const swiper = this.swiperEl?.nativeElement.swiper;
+    const swiper = this.swiper?.nativeElement.swiper;
     swiper?.slidePrev();
   }
 
   slideChange(swiper: any) {
-    this.activeIndex = swiper.detail[0].activeIndex;
+    const swiperInstance = swiper.detail[0];
+
+    // Prevent duplicate triggering due to looping
+    const realIndex = swiperInstance.realIndex ?? swiperInstance.activeIndex;
+
+    if (this.activeIndex === realIndex) return;
+
+    this.activeIndex = realIndex;
     this.captionState = 'void';
     this.captionVisible = false;
+    this.isAtEnd = swiperInstance.isEnd;
+    this.isAtBeginning = swiperInstance.isBeginning;
 
     setTimeout(() => {
       this.captionState = 'active';

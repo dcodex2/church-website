@@ -1,0 +1,6 @@
+/* Target the shadow DOM parts exposed by Swiper */
+.swiper::part(button-next),
+.swiper::part(button-prev) {
+  color: #fff; /* or use your Tailwind color value here */
+  font-size: 1.5rem; /* optional: size */
+}
