@@ -1,108 +1,109 @@
 <section class="bg-[#fefcf8] py-16 px-6 md:px-12">
-    <div class="max-w-5xl mx-auto text-center">
-      <!-- Heading -->
-      <h2 class="text-3xl md:text-4xl font-bold text-[#005480] mb-4">
-        {{ 'CONTACT_PAGE_HEADER' | translate }}
-      </h2>
-      <p class="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
-        {{ 'CONTACT_PAGE_INTRO' | translate }}
-      </p>
-  
-      <!-- Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center justify-center mb-12">
-        <!-- Service Times -->
-        <div>
-          <h3 class="text-xl font-semibold text-[#005480] mb-2">
-            {{ 'CONTACT_PAGE_SERVICE_TIMES_HEADER' | translate }}
-          </h3>
-          <ul class="text-gray-700 space-y-1">
-            <li><strong>{{ 'CONTACT_PAGE_SERVICE_DAY_MONDAY' | translate }}:</strong> 8:00 PM – 9:00 PM</li>
-            <li><strong>{{ 'CONTACT_PAGE_SERVICE_DAY_WEDNESDAY' | translate }}:</strong> 8:00 PM – 9:00 PM</li>
-            <li><strong>{{ 'CONTACT_PAGE_SERVICE_DAY_FRIDAY' | translate }}:</strong> 8:00 PM – 9:00 PM</li>
-            <li><strong>{{ 'CONTACT_PAGE_SERVICE_DAY_SATURDAY' | translate }}:</strong> 9:00 AM – 12:00 PM</li>
-          </ul>
-        </div>
-  
-        <!-- What to Expect -->
-        <div>
-          <h3 class="text-xl font-semibold text-[#005480] mb-2">
-            {{ 'CONTACT_PAGE_EXPECT_HEADER' | translate }}
-          </h3>
-          <ul class="text-gray-700 list-disc list-inside space-y-1 text-left md:text-center">
-            <li>{{ 'CONTACT_PAGE_EXPECT_ITEM_1' | translate }}</li>
-            <li>{{ 'CONTACT_PAGE_EXPECT_ITEM_2' | translate }}</li>
-            <li>{{ 'CONTACT_PAGE_EXPECT_ITEM_3' | translate }}</li>
-            <li>{{ 'CONTACT_PAGE_EXPECT_ITEM_4' | translate }}</li>
-          </ul>
-        </div>
+  <div class="max-w-5xl mx-auto text-center">
+    <!-- Heading -->
+    <h2 class="text-3xl md:text-4xl font-bold text-[#005480] mb-4">
+      {{ 'CONTACT_PAGE_HEADER' | translate }}
+    </h2>
+    <p class="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
+      {{ 'CONTACT_PAGE_INTRO' | translate }}
+    </p>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center justify-center mb-12">
+      <!-- Service Times -->
+      <div>
+        <h3 class="text-xl font-semibold text-[#005480] mb-2">
+          {{ 'CONTACT_PAGE_SERVICE_TIMES_HEADER' | translate }}
+        </h3>
+        <ul class="text-gray-700 space-y-1">
+          <li><strong>{{ 'CONTACT_PAGE_SERVICE_DAY_MONDAY' | translate }}:</strong> 8:00 PM – 9:00 PM</li>
+          <li><strong>{{ 'CONTACT_PAGE_SERVICE_DAY_WEDNESDAY' | translate }}:</strong> 8:00 PM – 9:00 PM</li>
+          <li><strong>{{ 'CONTACT_PAGE_SERVICE_DAY_FRIDAY' | translate }}:</strong> 8:00 PM – 9:00 PM</li>
+          <li><strong>{{ 'CONTACT_PAGE_SERVICE_DAY_SATURDAY' | translate }}:</strong> 9:00 AM – 12:00 PM</li>
+        </ul>
       </div>
-  
-      <!-- Optional Form -->
-      <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md max-w-2xl mx-auto mb-10">
-        <h4 class="text-lg font-semibold text-[#005480] mb-4">
-          {{ 'CONTACT_PAGE_FORM_HEADER' | translate }}
-        </h4>
-        <p class="text-sm text-gray-600 mb-4">
-          {{ 'CONTACT_PAGE_FORM_DESCRIPTION' | translate }}
-        </p>
-  
-        <form>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <input
-              type="text"
-              [placeholder]="'CONTACT_PAGE_FORM_PLACEHOLDER_NAME' | translate"
-              class="w-full border rounded px-4 py-2"
-            />
-            <input
-              type="email"
-              [placeholder]="'CONTACT_PAGE_FORM_PLACEHOLDER_EMAIL' | translate"
-              class="w-full border rounded px-4 py-2"
-            />
-          </div>
-          <div class="mb-4">
-            <input
-              type="date"
-              class="w-full border rounded px-4 py-2 text-gray-700"
-              [attr.placeholder]="'CONTACT_PAGE_FORM_PLACEHOLDER_DATE' | translate"
-            />
-          </div>
-  
-          <app-button
-            [type]="'button'"
-            class="flex justify-center content-center"
-            [defaultClasses]="'hover:!bg-[#004466] transition'"
-            [padding]="'.7rem 1.5rem'"
-            [backgroundColor]="'#005480'"
-            [label]="'CONTACT_PAGE_FORM_BUTTON' | translate"
-          ></app-button>
-        </form>
-      </div>
-  
-      <!-- CTA Buttons -->
-      <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-        <a
-          href="https://www.google.com/maps/place/5545+Firestone+Rd,+Jacksonville,+FL+32244-1529"
-          target="_blank"
-          class="inline-block bg-[#005480] text-white px-6 py-3 rounded shadow hover:bg-[#004466] transition"
-        >
-          {{ 'CONTACT_PAGE_BUTTON_DIRECTIONS' | translate }}
-        </a>
-        <a
-          href="/kids-programs"
-          class="inline-block bg-white border border-[#005480] text-[#005480] px-6 py-3 rounded shadow hover:bg-[#005480] hover:text-white transition"
-        >
-          {{ 'CONTACT_PAGE_BUTTON_KIDS' | translate }}
-        </a>
-        <a
-          href="https://www.google.com/calendar/render?action=TEMPLATE&text=Visit+Our+Church&dates=20240601T140000Z/20240601T150000Z&details=We+look+forward+to+seeing+you!&location=5545+Firestone+Rd,+Jacksonville,+FL+32244-1529"
-          class="inline-flex items-center gap-2 bg-[#005480] text-white px-6 py-3 rounded shadow hover:bg-[#004466] transition"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-          </svg>
-          {{ 'CONTACT_PAGE_BUTTON_CALENDAR' | translate }}
-        </a>
+
+      <!-- What to Expect -->
+      <div>
+        <h3 class="text-xl font-semibold text-[#005480] mb-2">
+          {{ 'CONTACT_PAGE_EXPECT_HEADER' | translate }}
+        </h3>
+        <ul class="text-gray-700 list-disc list-inside space-y-1 text-center">
+          <li>{{ 'CONTACT_PAGE_EXPECT_ITEM_1' | translate }}</li>
+          <li>{{ 'CONTACT_PAGE_EXPECT_ITEM_2' | translate }}</li>
+          <li>{{ 'CONTACT_PAGE_EXPECT_ITEM_3' | translate }}</li>
+          <li>{{ 'CONTACT_PAGE_EXPECT_ITEM_4' | translate }}</li>
+        </ul>
       </div>
     </div>
-  </section>
-  
+
+    <!-- Optional Form -->
+    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md max-w-2xl mx-auto mb-10">
+      <h4 class="text-lg font-semibold text-[#005480] mb-4">
+        {{ 'CONTACT_PAGE_FORM_HEADER' | translate }}
+      </h4>
+      <p class="text-sm text-gray-600 mb-4">
+        {{ 'CONTACT_PAGE_FORM_DESCRIPTION' | translate }}
+      </p>
+
+      <form>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <input
+            type="text"
+            [placeholder]="'CONTACT_PAGE_FORM_PLACEHOLDER_NAME' | translate"
+            class="w-full border rounded px-4 py-2"
+          />
+          <input
+            type="email"
+            [placeholder]="'CONTACT_PAGE_FORM_PLACEHOLDER_EMAIL' | translate"
+            class="w-full border rounded px-4 py-2"
+          />
+        </div>
+        <div class="mb-4">
+          <input
+          type="date"
+          class="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Select a date"
+          onfocus="(this.type='date')"
+          onblur="if(!this.value)this.type='text'"
+        />
+        </div>
+
+        <app-button
+          [type]="'button'"
+          class="flex justify-center content-center"
+          [defaultClasses]="'hover:!bg-[#004466] transition'"
+          [padding]="'.7rem 1.5rem'"
+          [backgroundColor]="'#005480'"
+          [label]="'CONTACT_PAGE_FORM_BUTTON' | translate"
+        ></app-button>
+      </form>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+      <a
+        href="https://www.google.com/maps/place/5545+Firestone+Rd,+Jacksonville,+FL+32244-1529"
+        target="_blank"
+        class="inline-block bg-[#005480] text-white px-6 py-3 rounded shadow hover:bg-[#004466] transition"
+      >
+        {{ 'CONTACT_PAGE_BUTTON_DIRECTIONS' | translate }}
+      </a>
+      <a
+        href="/kids-programs"
+        class="inline-block bg-white border border-[#005480] text-[#005480] px-6 py-3 rounded shadow hover:bg-[#005480] hover:text-white transition"
+      >
+        {{ 'CONTACT_PAGE_BUTTON_KIDS' | translate }}
+      </a>
+      <a
+        href="https://www.google.com/calendar/render?action=TEMPLATE&text=Visit+Our+Church&dates=20240601T140000Z/20240601T150000Z&details=We+look+forward+to+seeing+you!&location=5545+Firestone+Rd,+Jacksonville,+FL+32244-1529"
+        class="inline-flex items-center gap-2 bg-[#005480] text-white px-6 py-3 rounded shadow hover:bg-[#004466] transition"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        {{ 'CONTACT_PAGE_BUTTON_CALENDAR' | translate }}
+      </a>
+    </div>
+  </div>
+</section>
