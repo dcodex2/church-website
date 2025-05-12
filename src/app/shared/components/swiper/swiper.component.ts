@@ -16,6 +16,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from './swiper.directive';
+import { delay } from 'rxjs';
 export interface SlideItems {
   title: string;
   description: string;
@@ -93,6 +94,7 @@ export class SwiperComponent implements OnInit {
     navigation: true,
     loop: this.infinite,
     init: true,
+    speed: 500,
   };
   constructor(private cd: ChangeDetectorRef) {}
 
@@ -124,6 +126,13 @@ export class SwiperComponent implements OnInit {
       this.swiperConfig.breakpoints = this.breakpointsConfig;
       this.swiperConfig.navigation = false;
       this.swiperConfig.loop = this.infinite;
+    }
+
+    if (this.autoplay) {
+      this.swiperConfig.autoplay = {
+        delay: this.autoplaySpeed,
+        disableOnInteraction: false,
+      };
     }
     this.swiperConfig.slidesPerView = this.slidesToShow;
   }
