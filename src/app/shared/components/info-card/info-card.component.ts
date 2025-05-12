@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [CommonModule, RouterModule, ButtonComponent, TranslateModule],
   template: `
     <div
-      class="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-200 hover:shadow-xl transition duration-300 relative"
+      class="w-full rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-200 hover:shadow-xl transition duration-300 relative"
     >
       <img
         *ngIf="image"

@@ -36,6 +36,7 @@ export interface SlideItems {
   standalone: true,
   imports: [CommonModule, InfoCardComponent, TranslateModule, SwiperDirective],
   templateUrl: './swiper.component.html',
+  styleUrl: './swiper.component.scss',
   animations: [
     trigger('fadeCaption', [
       transition('void => active', [
@@ -97,34 +98,33 @@ export class SwiperComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.type === 'cards') {
+      this.breakpointsConfig = {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 16,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 24,
+        },
+        1280: {
+          slidesPerView: this.slidesToShow,
+          spaceBetween: 28,
+        },
+      };
       this.swiperConfig.spaceBetween = 20;
       this.swiperConfig.breakpoints = this.breakpointsConfig;
       this.swiperConfig.navigation = false;
     }
     this.swiperConfig.slidesPerView = this.slidesToShow;
-
-    this.breakpointsConfig = {
-      0: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-      },
-      640: {
-        slidesPerView: 1,
-        spaceBetween: 16,
-      },
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 24,
-      },
-      1280: {
-        slidesPerView: this.slidesToShow,
-        spaceBetween: 28,
-      },
-    };
   }
 
   get autoplayConfig(): string | null {

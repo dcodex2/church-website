@@ -60,7 +60,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
       url: 'https://images.pexels.com/photos/6646926/pexels-photo-6646926.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       captionPosition: 'center',
       textAlignment: 'text-center',
-      titleFontClasses: 'text-6xl font-semibold',
+      titleFontClasses: 'text-5xl sm:text-6xl font-semibold',
       descriptionFontClasses: 'text-xl text-gray-200 mt-2',
       slideOpacity: '0.3',
       badge: '',

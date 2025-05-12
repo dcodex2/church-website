@@ -4,3 +4,16 @@
   color: #fff; /* or use your Tailwind color value here */
   font-size: 1.5rem; /* optional: size */
 }
+
+.swiper {
+  width: 100%;
+
+  &.cards {
+    width: calc(100% - 80px);
+
+    @media only screen and (max-width: 600px) {
+      width: calc(100% - 60px);
+
+    }
+  }
+}
