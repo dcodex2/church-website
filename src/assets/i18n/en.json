@@ -103,9 +103,16 @@
   "ABOUT_PAGE_INVITE_TEXT": "Whether you're exploring faith or looking for a church family, there's a place for you here.",
   "ABOUT_PAGE_INVITE_BUTTON": "Plan Your Visit",
 
-  "SLIDER_HEADER": "Our Ministry Slides",
-  "SLIDE_1_TITLE": "Youth Ministry",
-  "SLIDE_1_DESC": "Empowering the next generation.",
-  "SLIDE_2_TITLE": "Community Service",
-  "SLIDE_2_DESC": "Serving with purpose and love."
+  "CONTACT_PAGE_HEADER": "Get in Touch",
+  "CONTACT_PAGE_INTRO": "We’d love to hear from you! Reach out with any questions or prayer requests.",
+  "CONTACT_PAGE_ADDRESS_HEADER": "Address",
+  "CONTACT_PAGE_ADDRESS": "123 Church St, YourCity, ST 12345",
+  "CONTACT_PAGE_PHONE_HEADER": "Phone",
+  "CONTACT_PAGE_PHONE": "(123) 456-7890",
+  "CONTACT_PAGE_EMAIL_HEADER": "Email",
+  "CONTACT_PAGE_EMAIL": "info@yourchurch.org",
+  "CONTACT_FORM_NAME": "Your Name",
+  "CONTACT_FORM_EMAIL": "Your Email",
+  "CONTACT_FORM_MESSAGE": "Your Message",
+  "CONTACT_FORM_SUBMIT": "Send Message"
 }

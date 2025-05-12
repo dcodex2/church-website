@@ -102,5 +102,18 @@
   "ABOUT_PAGE_TEAM_HEADER": "Conoce a Nuestro Equipo Pastoral",
   "ABOUT_PAGE_INVITE_HEADER": "Únete a Nosotros en el Camino",
   "ABOUT_PAGE_INVITE_TEXT": "Ya sea que estés explorando la fe o buscando una familia espiritual, aquí hay un lugar para ti.",
-  "ABOUT_PAGE_INVITE_BUTTON": "Planifica Tu Visita"
+  "ABOUT_PAGE_INVITE_BUTTON": "Planifica Tu Visita",
+
+  "CONTACT_PAGE_HEADER": "Contáctanos",
+  "CONTACT_PAGE_INTRO": "¡Nos encantaría saber de ti! Escríbenos si tienes preguntas o peticiones de oración.",
+  "CONTACT_PAGE_ADDRESS_HEADER": "Dirección",
+  "CONTACT_PAGE_ADDRESS": "123 Calle Iglesia, TuCiudad, ST 12345",
+  "CONTACT_PAGE_PHONE_HEADER": "Teléfono",
+  "CONTACT_PAGE_PHONE": "(123) 456-7890",
+  "CONTACT_PAGE_EMAIL_HEADER": "Correo Electrónico",
+  "CONTACT_PAGE_EMAIL": "info@tuiglesia.org",
+  "CONTACT_FORM_NAME": "Tu Nombre",
+  "CONTACT_FORM_EMAIL": "Tu Correo Electrónico",
+  "CONTACT_FORM_MESSAGE": "Tu Mensaje",
+  "CONTACT_FORM_SUBMIT": "Enviar Mensaje"
 }
