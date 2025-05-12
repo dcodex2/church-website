@@ -9,4 +9,6 @@ import { ButtonComponent } from '../../shared/components/button/button.component
   templateUrl: './visit.component.html',
   styleUrl: './visit.component.scss',
 })
-export class VisitComponent {}
+export class VisitComponent {
+  today: string = new Date().toISOString().split('T')[0];
+}
