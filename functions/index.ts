@@ -20,6 +20,8 @@ server.get('*', async (req, res, next) => {
   try {
     // Import main.js instead of main.server.mjs
     const { app } = await import(`${distFolder}/main.js`);
+    res.set('Cache-Control', 'no-store');
+
     return app(req, res, next);
   } catch (err) {
     console.error('[SSR] Failed to handle request:', err);
