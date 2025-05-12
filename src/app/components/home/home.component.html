@@ -6,7 +6,7 @@
     <app-swiper
   [items]="imageSliderArr"
   [autoplay]="true"
-  [autoplaySpeed]="500000"
+  [autoplaySpeed]="5000"
   [infinite]="true"
   [sliderheight]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'"
   [sliderWrapperStyle]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'"
@@ -139,21 +139,20 @@
         {{ 'HOME_PAGE_DISCOVER_DESCRIPTION' | translate }}
       </p>
   
-      <div class="relative w-full">
+      <!-- <div class="relative w-full">
         <div class="relative block">
-          <app-swiper
-          [items]="infoCards"
-          type="cards"
-          [slidesToShow]="3"
-          [infinite]="false"
-          [autoplay]="false"
-          [sliderheight]="'h-102'"
-          [sliderWrapperStyle]="'h-115 cards'"
-        >
-        </app-swiper>
-        
+          <app-content-slider
+            [autoplay]="false"
+            [infinite]="false"
+            type="cards"
+            [slidesToShow]="3"
+            [sliderheight]="'h-102'"
+            [sliderWrapperStyle]="'h-115 cards'"
+            [items]="infoCards"
+            [buttonDesign]="'arrow'"
+          ></app-content-slider>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 </main>

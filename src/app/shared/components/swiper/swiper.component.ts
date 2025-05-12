@@ -12,7 +12,10 @@ import {
 import { CommonModule } from '@angular/common';
 import { InfoCardComponent } from '../info-card/info-card.component';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { animate, style, transition, trigger } from '@angular/animations';
+import { SwiperContainer } from 'swiper/element';
+import { SwiperOptions } from 'swiper/types';
+import { SwiperDirective } from './swiper.directive';
 export interface SlideItems {
   title: string;
   description: string;
@@ -31,12 +34,39 @@ export interface SlideItems {
 @Component({
   selector: 'app-swiper',
   standalone: true,
-  imports: [CommonModule, InfoCardComponent, TranslateModule],
+  imports: [CommonModule, InfoCardComponent, TranslateModule, SwiperDirective],
   templateUrl: './swiper.component.html',
+  animations: [
+    trigger('fadeCaption', [
+      transition('void => active', [
+        style({ opacity: 0 }),
+        animate('600ms ease-in', style({ opacity: 1 })),
+      ]),
+      transition('active => void', [
+        animate('200ms ease-in', style({ opacity: 0 })),
+      ]),
+    ]),
+    trigger('slideUpCaption', [
+      transition('void => active', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate(
+          '500ms ease-out',
+          style({ opacity: 1, transform: 'translateY(0)' })
+        ),
+      ]),
+    ]),
+    trigger('zoomInCaption', [
+      transition('void => active', [
+        style({ opacity: 0, transform: 'scale(0.8)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+    ]),
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // ✅ Add this line
 })
 export class SwiperComponent implements OnInit, AfterViewInit {
-  @ViewChild('swiperEl', { static: false }) swiperEl?: ElementRef;
+  @ViewChild('swiper') swiper!: ElementRef<SwiperContainer>;
+  @ViewChild('swiperEl', { static: true }) swiperEl!: ElementRef;
   @Input() items: SlideItems[] = [];
   @Input() slidesToShow: number = 1;
   @Input() sliderWrapperStyle: string = 'h-150';
@@ -53,32 +83,19 @@ export class SwiperComponent implements OnInit, AfterViewInit {
 
   activeIndex = 0;
   captionVisible = true;
-
+  captionAnimation: any;
+  captionState: any;
+  swiperConfig: SwiperOptions = {
+    spaceBetween: 10,
+    navigation: true,
+  };
   constructor(private cd: ChangeDetectorRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     console.log(this.items);
   }
 
-  ngAfterViewInit(): void {
-    const swiperElement = this.swiperEl?.nativeElement;
-
-    if (swiperElement?.initialize) {
-      swiperElement.initialize();
-    }
-
-    this.renderer.listen(swiperElement, 'slidechange', () => {
-      this.activeIndex = swiperElement.swiper.activeIndex;
-      this.captionVisible = true;
-      this.cd.detectChanges();
-    });
-
-    setTimeout(() => {
-      this.activeIndex = swiperElement?.swiper?.activeIndex || 0;
-      this.captionVisible = true;
-      this.cd.detectChanges();
-    }, 100);
-  }
+  ngAfterViewInit() {}
 
   get autoplayConfig(): string | null {
     return this.autoplay ? JSON.stringify({ delay: this.autoplaySpeed }) : null;
@@ -98,5 +115,27 @@ export class SwiperComponent implements OnInit, AfterViewInit {
       'bottom-right': ['caption-bottom-right'],
     };
     return base.concat(map[position] || ['caption-center']);
+  }
+
+  goNext() {
+    const swiper = this.swiperEl?.nativeElement.swiper;
+    swiper?.slideNext();
+  }
+
+  goPrev() {
+    const swiper = this.swiperEl?.nativeElement.swiper;
+    swiper?.slidePrev();
+  }
+
+  slideChange(swiper: any) {
+    this.activeIndex = swiper.detail[0].activeIndex;
+    this.captionState = 'void';
+    this.captionVisible = false;
+
+    setTimeout(() => {
+      this.captionState = 'active';
+      this.captionVisible = true;
+      this.cd.detectChanges();
+    }, 500);
   }
 }

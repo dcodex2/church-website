@@ -32,7 +32,8 @@
               ">
                     <div *ngIf="showCaption && i === activeIndex && captionVisible"
                         class="absolute flex w-full h-full px-4 text-white"
-                        [ngClass]="getCaptionClasses(item.captionPosition || defaultCaptionPosition)" @slideUpCaption>
+                        [ngClass]="getCaptionClasses(item.captionPosition || defaultCaptionPosition)" [@slideUpCaption]="captionState"
+                        >
                         <div [ngClass]="item.textAlignment || captionTextAlignment" class="drop-shadow-md">
                             <h5 [ngClass]="item.titleFontClasses ? item.titleFontClasses : 'text-xl font-semibold'">{{
                                 item.title | translate }}</h5>
