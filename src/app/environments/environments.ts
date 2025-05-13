@@ -1,12 +1,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyC_q0wzssyOWLiiLRDPoBTZymLTjpt6BZc',
-    authDomain: 'church-website-template-37956.firebaseapp.com',
-    projectId: 'church-website-template-37956',
-    storageBucket: 'church-website-template-37956.firebasestorage.app',
-    messagingSenderId: '795947444098',
-    appId: '1:795947444098:web:2625834a317110f793519b',
-    measurementId: 'G-TD3MFG7E6V',
+    apiKey: 'AIzaSyABLtKinRN0QECbmqUmYcwY712AK3QFxmc',
+    authDomain: 'church-app-template-64ef2.firebaseapp.com',
+    projectId: 'church-app-template-64ef2',
+    storageBucket: 'church-app-template-64ef2.firebasestorage.app',
+    messagingSenderId: '570171072726',
+    appId: '1:570171072726:web:90feb6f12194fb3f426977',
+    measurementId: 'G-QNXZDJ5MX8',
   },
 };

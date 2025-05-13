@@ -12,6 +12,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { SwiperComponent } from './shared/components/swiper/swiper.component';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { getDocFromServer } from 'firebase/firestore';
 
 @Component({
   selector: 'app-root',
@@ -73,20 +74,27 @@ export class AppComponent implements OnInit {
     translate.use(browserLang?.match(/en|es/) ? browserLang : 'en');
   }
 
-  ngOnInit(): void {
-    console.log(this.firestore);
-    const testDocRef = doc(this.firestore, 'eventGalleries/kenya-2024');
-    getDoc(testDocRef)
-      .then((snap) => {
-        if (snap.exists()) {
-          console.log('✅ Document exists:', snap.data());
-        } else {
-          console.log('❌ Document does not exist');
-        }
-      })
-      .catch((err) => {
-        console.error('❌ getDoc failed:', err);
-      });
+  async ngOnInit(): Promise<void> {
+    const testDocRef = doc(this.firestore, 'galleryEvents/kenya-2024');
+    console.log(testDocRef);
+    const docSnap = await getDocFromServer(testDocRef);
+    console.log(docSnap);
+
+    if (docSnap.exists()) {
+      console.log(docSnap.data());
+    }
+    // getDoc(testDocRef)
+    //   .then((snap) => {
+    //     console.log(snap);
+    //     if (snap.exists()) {
+    //       console.log('✅ Document exists:', snap.data());
+    //     } else {
+    //       console.log('❌ Document does not exist');
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error('❌ getDoc failed:', err);
+    //   });
   }
 
   switchLang(lang: string) {
