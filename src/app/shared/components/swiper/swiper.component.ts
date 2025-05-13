@@ -118,10 +118,23 @@ export class SwiperComponent implements OnInit {
           spaceBetween: 24,
         },
         1280: {
-          slidesPerView: this.slidesToShow,
+          slidesPerView: 4,
           spaceBetween: 28,
         },
+        1440: {
+          slidesPerView: 4,
+          spaceBetween: 32,
+        },
+        1600: {
+          slidesPerView: 5,
+          spaceBetween: 36,
+        },
+        1920: {
+          slidesPerView: 6,
+          spaceBetween: 40,
+        },
       };
+
       this.swiperConfig.spaceBetween = 20;
       this.swiperConfig.breakpoints = this.breakpointsConfig;
       this.swiperConfig.navigation = false;

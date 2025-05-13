@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 interface FooterLink {
   label: string;
@@ -16,7 +17,7 @@ export interface FooterSection {
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, RouterModule],
   template: `
     <footer
       [ngClass]="layout"
@@ -35,7 +36,7 @@ export interface FooterSection {
           <ul class="space-y-2">
             <li *ngFor="let link of section.links">
               <a
-                [href]="link.path"
+                [routerLink]="link.path"
                 [target]="link.external ? '_blank' : '_self'"
                 class="hover:!text-[#005480] transition duration-200"
                 [style.color]="linkColor"
