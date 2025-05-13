@@ -35,7 +35,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
     {
       title: 'HOME_EVENT_SLIDER_IMG_1_TITLE',
       description: 'HOME_EVENT_SLIDER_IMG_1_DESCRIPTION',
-      url: 'https://images.unsplash.com/photo-1591204154525-f7ae12d8572f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      url: 'https://images.unsplash.com/photo-1519491050282-cf00c82424b4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       captionPosition: 'center',
       textAlignment: 'text-center',
       titleFontClasses: 'text-6xl font-semibold',
@@ -151,8 +151,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
     const template = this.registry.getTemplate('prayerTemplate');
     if (template) {
       this.popup.open(template, {
-        name: 'Ministries!',
-        message: 'Are you sure you want to delete this?',
+        name: '',
+        message: '',
         close: (confirmed: boolean) => {
           if (confirmed) {
             // perform delete
