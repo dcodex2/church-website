@@ -16,10 +16,16 @@ import { provideHttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { loadTranslations } from './translation.loader';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import {
+  provideFirestore,
+  initializeFirestore,
+  persistentLocalCache,
+} from '@angular/fire/firestore';
+
 import { environment } from './environments/environments';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,7 +35,16 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
-    provideFirestore(() => getFirestore()),
+
+    // ✅ FIXED: Force long polling + disable streaming listener bugs
+    provideFirestore(() =>
+      initializeFirestore(initializeApp(environment.firebase), {
+        ignoreUndefinedProperties: true,
+        experimentalForceLongPolling: true,
+        localCache: persistentLocalCache(),
+      })
+    ),
+
     provideAnimations(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
