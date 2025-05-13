@@ -63,42 +63,6 @@
           },
           "defaultConfiguration": "production"
         },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/church-website-template-basic/server",
-            "main": "src/main.server.ts",
-            "tsConfig": "tsconfig.server.json"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "sourceMap": false,
-              "optimization": true
-            }
-          }
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "browserTarget": "church-website-template-basic:build:production",
-            "serverTarget": "church-website-template-basic:server:production",
-            "timeout": 120000,
-            "routes": [
-              "/",
-              "/about",
-              "/contact",
-              "/components",
-              "/carousels",
-              "/info-cards",
-              "/buttons",
-              "/dropdowns",
-              "/videos",
-              "/calendar",
-              "/visit"
-            ]
-          }
-        },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
