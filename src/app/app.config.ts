@@ -2,8 +2,6 @@ import {
   ApplicationConfig,
   importProvidersFrom,
   provideZoneChangeDetection,
-  PLATFORM_ID,
-  inject,
   APP_INITIALIZER,
 } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
@@ -18,6 +16,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { loadTranslations } from './translation.loader';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { environment } from './environments/environments';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -25,6 +27,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
+    provideFirestore(() => getFirestore()),
     provideAnimations(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),

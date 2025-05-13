@@ -45,7 +45,7 @@ export const NavigationConfig: NavItem[] = [
   {
     type: 'link',
     label: 'NAVIGATION_LINK_4',
-    path: '/events',
+    path: '/gallery',
     labelColor: 'text-[#64748b]',
     hoverLabelColor: 'hover:!text-[#005480] transition duration-200',
     hoverLinkAnimation: hoverLinkAnimations[0].animation,

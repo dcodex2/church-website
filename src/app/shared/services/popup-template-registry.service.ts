@@ -13,7 +13,7 @@ export class PopupTemplateRegistryService {
   }
 
   showTemplates() {
-    console.log(this.templates)
+    console.log(this.templates);
   }
 
   clear() {

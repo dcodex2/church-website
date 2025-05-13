@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ComponentUsageComponent } from './shared/components/component-usage/component-usage.component';
 import { PopupTemplatesComponent } from './shared/components/popup-templates/popup-templates.component';
@@ -11,6 +11,7 @@ import {
 import { HeaderComponent } from './shared/components/header/header.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { SwiperComponent } from './shared/components/swiper/swiper.component';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,7 @@ import { SwiperComponent } from './shared/components/swiper/swiper.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'church-website-template-basic';
   logoUrl = '/logos/church-logo.png';
   footerSections: FooterSection[] = [
@@ -61,12 +62,31 @@ export class AppComponent {
   ];
   translationsReady: boolean = false;
 
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService,
+    private firestore: Firestore
+  ) {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('en');
 
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang?.match(/en|es/) ? browserLang : 'en');
+  }
+
+  ngOnInit(): void {
+    console.log(this.firestore);
+    const testDocRef = doc(this.firestore, 'eventGalleries/kenya-2024');
+    getDoc(testDocRef)
+      .then((snap) => {
+        if (snap.exists()) {
+          console.log('✅ Document exists:', snap.data());
+        } else {
+          console.log('❌ Document does not exist');
+        }
+      })
+      .catch((err) => {
+        console.error('❌ getDoc failed:', err);
+      });
   }
 
   switchLang(lang: string) {
