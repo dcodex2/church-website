@@ -21,7 +21,7 @@ export class PopupService {
       height: '100vh',
       autoFocus: false,
       restoreFocus: false,
-      backdropClass: 'dark-backdrop',
+      backdropClass: 'white-backdrop',
     });
   }
 

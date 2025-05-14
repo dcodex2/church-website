@@ -35,7 +35,6 @@ export class ImageViewerComponent implements OnInit {
     this.currentIndex = this.data.images.indexOf(this.data.selectedImage);
   }
   ngOnInit(): void {
-    console.log(this.data.images);
     this.isMobile = window.innerWidth <= 1024;
     this.images = this.data.images;
     const index = this.images.indexOf(this.data.selectedImage);
