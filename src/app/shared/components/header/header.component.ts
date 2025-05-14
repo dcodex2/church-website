@@ -9,11 +9,14 @@ import {
   slideInOutRight,
   slideInOutLeft,
 } from '../../animations/slide.animations';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-header',
   standalone: true,
   animations: [slideInOut, slideInOutRight, slideInOutLeft],
-  imports: [CommonModule, NavigationComponent, RouterLink],
+  imports: [CommonModule, NavigationComponent, RouterLink, ClickOutsideModule],
   template: `
     <header
       [style.backgroundColor]="backgroundColor"
@@ -36,7 +39,7 @@ import {
       "
     >
       <div
-        class="max-w-7xl mx-auto w-full relative"
+        class="max-w-7xl mx-auto w-full"
         [ngClass]="[
           layout === 'horizontal'
             ? 'flex items-center md:justify-between justify-start px-4'
@@ -44,6 +47,54 @@ import {
           centerLogo ? 'grid !justify-center' : 'block'
         ]"
       >
+        <!-- 🌐 Language Dropdown -->
+        <div
+          class="absolute top-2 right-2 sm:top-4 sm:right-4 z-50"
+          (clickOutside)="showLangDropdown = false"
+        >
+          <div class="relative inline-block text-left">
+            <button
+              (click)="toggleLangDropdown()"
+              class="inline-flex justify-center items-center gap-1 sm:px-4 sm:py-2 text-sm font-medium text-black rounded-md transition"
+            >
+              🌐 Language
+              <svg
+                class="w-4 h-4 transition-transform"
+                [ngClass]="{ 'rotate-180': showLangDropdown }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            <!-- Dropdown -->
+            <div
+              *ngIf="showLangDropdown"
+              class="absolute right-0 mt-2 w-32 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black/10 focus:outline-none"
+            >
+              <button
+                class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-[#005480] hover:text-white transition"
+                (click)="switchLang('en')"
+              >
+                English
+              </button>
+              <button
+                class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-[#005480] hover:text-white transition"
+                (click)="switchLang('es')"
+              >
+                Español
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- 🍔 Mobile Menu Icon -->
         <div class="md:hidden absolute left-4 top-1/2 -translate-y-1/2">
           <button (click)="toggleMobileMenu()" class="flex items-center">
@@ -94,15 +145,16 @@ import {
 
       <!-- 📱 Mobile Navigation Drawer -->
       <div
+        (clickOutside)="toggleMobileMenu()"
         *ngIf="mobileMenuOpen"
         [@slideInOut]="drawerSide === 'left' ? 'in' : null"
         [@slideInOutLeft]="drawerSide === 'right' ? 'in' : null"
-        class="fixed top-0 h-full w-64 bg-white shadow-lg z-50 p-4"
+        class="fixed top-0 h-full w-64 shadow-lg z-50 p-4 bg-[#005480]"
         [ngClass]="drawerSide === 'right' ? 'right-0' : 'left-0'"
       >
         <div class="flex justify-end">
           <button (click)="toggleMobileMenu()">
-            <i class="material-icons">close</i>
+            <i class="material-icons text-white">close</i>
           </button>
         </div>
         <app-navigation
@@ -136,12 +188,23 @@ export class HeaderComponent {
     backgroundColor: '#3B82F6',
     color: '#ffffff',
   };
-
+  showLangDropdown: boolean = false;
   @Input() drawerSide: 'left' | 'right' = 'left';
   @Input() drawerBtnPosition: 'left' | 'right' = 'left';
   mobileMenuOpen: boolean = false;
 
+  constructor(private translate: TranslateService) {}
+
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  toggleLangDropdown(): void {
+    this.showLangDropdown = !this.showLangDropdown;
+  }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
+    this.showLangDropdown = false;
   }
 }

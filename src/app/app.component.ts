@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ComponentUsageComponent } from './shared/components/component-usage/component-usage.component';
 import { PopupTemplatesComponent } from './shared/components/popup-templates/popup-templates.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -11,14 +10,11 @@ import {
 import { HeaderComponent } from './shared/components/header/header.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { SwiperComponent } from './shared/components/swiper/swiper.component';
-import { Firestore, doc, getDoc } from '@angular/fire/firestore';
-import { getDocFromServer } from 'firebase/firestore';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    ComponentUsageComponent,
     PopupTemplatesComponent,
     FormsModule,
     CommonModule,
@@ -63,10 +59,7 @@ export class AppComponent implements OnInit {
   ];
   translationsReady: boolean = false;
 
-  constructor(
-    private translate: TranslateService,
-    private firestore: Firestore
-  ) {
+  constructor(private translate: TranslateService) {
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('en');
 
@@ -74,27 +67,7 @@ export class AppComponent implements OnInit {
     translate.use(browserLang?.match(/en|es/) ? browserLang : 'en');
   }
 
-  async ngOnInit(): Promise<void> {
-    // const testDocRef = doc(this.firestore, 'galleryEvents/kenya-2024');
-    // console.log(testDocRef);
-    // const docSnap = await getDocFromServer(testDocRef);
-    // console.log(docSnap);
-    // if (docSnap.exists()) {
-    //   console.log(docSnap.data());
-    // }
-    // getDoc(testDocRef)
-    //   .then((snap) => {
-    //     console.log(snap);
-    //     if (snap.exists()) {
-    //       console.log('✅ Document exists:', snap.data());
-    //     } else {
-    //       console.log('❌ Document does not exist');
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error('❌ getDoc failed:', err);
-    //   });
-  }
+  async ngOnInit(): Promise<void> {}
 
   switchLang(lang: string) {
     this.translate.use(lang);

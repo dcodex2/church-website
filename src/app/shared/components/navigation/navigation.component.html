@@ -12,7 +12,7 @@
              'font-size': settings.labelFontSize,
              'padding': settings.linkPadding,
            }"   
-           [ngClass]="[item.labelColor, item.hoverLabelColor, item.hoverLinkAnimation]"
+           [ngClass]="[item.labelColor, item.hoverLabelColor, item.hoverLinkAnimation, layout === 'vertical' ? 'vertical' : '']"
 >
         <i *ngIf="item.icon" class="material-icons">{{ item.icon }}</i>
           {{ item.label | translate }}
@@ -25,7 +25,7 @@
           class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-blue-600 transition-colors whitespace-nowrap"
           [ngStyle]="{
                'font-size': settings.labelFontSize,
-             }">
+             }" [ngClass]="[layout === 'vertical' ? 'vertical' : '']">
           <i *ngIf="child.icon" class="material-icons">{{ child.icon }}</i>
           {{ child.label | translate }}
         </a>
