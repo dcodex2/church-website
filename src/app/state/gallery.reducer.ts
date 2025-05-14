@@ -22,7 +22,7 @@ export const galleryReducer = createReducer(
   // Load all events
   on(GalleryActions.loadGalleryEvents, (state) => ({
     ...state,
-    loading: true,
+    loading: state.events.length > 0 ? false : true,
   })),
   on(GalleryActions.loadGalleryEventsSuccess, (state, { events }) => ({
     ...state,
@@ -31,10 +31,14 @@ export const galleryReducer = createReducer(
   })),
 
   // Load images for a specific event
-  on(GalleryActions.loadEventGallery, (state) => ({
-    ...state,
-    loading: true,
-  })),
+  on(GalleryActions.loadEventGallery, (state, { eventId }) => {
+    const alreadyLoaded = !!state.eventImages[eventId]?.length;
+    return {
+      ...state,
+      loading: !alreadyLoaded,
+    };
+  }),
+
   on(GalleryActions.loadEventGallerySuccess, (state, { eventId, images }) => ({
     ...state,
     eventImages: {

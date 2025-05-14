@@ -5,9 +5,8 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { GalleryService } from './gallery.service';
 import { GalleryEvent } from './gallery.model';
-import { forkJoin, from, Observable, of, switchMap, take } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { InfoCardComponent } from '../../shared/components/info-card/info-card.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -19,6 +18,7 @@ import { Store } from '@ngrx/store';
 import {
   selectEventImages,
   selectGalleryEvents,
+  selectGalleryLoading,
 } from '../../state/gallery.selector';
 import { PopupService } from '../../shared/services/popup/popup.service';
 @Component({
@@ -40,6 +40,8 @@ export class GalleryComponent implements OnInit {
   galleryView: 'events-gallery' | 'event-images' = 'events-gallery';
   selectedEvent?: GalleryEvent;
   events$?: Observable<GalleryEvent[]>;
+  selectGalleryLoading$?: Observable<boolean>;
+
   images$: Observable<string[]> = of([]);
 
   constructor(
@@ -49,6 +51,7 @@ export class GalleryComponent implements OnInit {
     private popupService: PopupService
   ) {
     this.events$ = this.store.select(selectGalleryEvents);
+    this.selectGalleryLoading$ = this.store.select(selectGalleryLoading);
   }
 
   ngOnInit(): void {
