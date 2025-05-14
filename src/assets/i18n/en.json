@@ -114,5 +114,7 @@
   "CONTACT_FORM_NAME": "Your Name",
   "CONTACT_FORM_EMAIL": "Your Email",
   "CONTACT_FORM_MESSAGE": "Your Message",
-  "CONTACT_FORM_SUBMIT": "Send Message"
+  "CONTACT_FORM_SUBMIT": "Send Message",
+
+  "GALLERY_PAGE_HEADER": "Events Gallery"
 }

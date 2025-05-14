@@ -115,5 +115,6 @@
   "CONTACT_FORM_NAME": "Tu Nombre",
   "CONTACT_FORM_EMAIL": "Tu Correo Electrónico",
   "CONTACT_FORM_MESSAGE": "Tu Mensaje",
-  "CONTACT_FORM_SUBMIT": "Enviar Mensaje"
+  "CONTACT_FORM_SUBMIT": "Enviar Mensaje",
+  "GALLERY_PAGE_HEADER": "Galeria de Eventos"
 }
