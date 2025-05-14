@@ -53,7 +53,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <div
           *ngFor="let image of images"
-          class="overflow-hidden rounded-xl shadow transition transform hover:scale-[1.02] hover:shadow-xl duration-300  cursor-pointer"
+          class="overflow-hidden rounded-xl shadow transition transform hover:scale-[1.02] hover:shadow-xl duration-300  cursor-pointer" (click)="openImage(image, images)"
         >
           <img
             [src]="image"

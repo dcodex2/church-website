@@ -20,6 +20,7 @@ import {
   selectEventImages,
   selectGalleryEvents,
 } from '../../state/gallery.selector';
+import { PopupService } from '../../shared/services/popup/popup.service';
 @Component({
   selector: 'app-gallery',
   imports: [CommonModule, InfoCardComponent, TranslateModule],
@@ -44,7 +45,8 @@ export class GalleryComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private store: Store,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private popupService: PopupService
   ) {
     this.events$ = this.store.select(selectGalleryEvents);
   }
@@ -60,6 +62,10 @@ export class GalleryComponent implements OnInit {
         this.cd.detectChanges();
       }
     );
+  }
+
+  openImage(selectedImageUrl: any, imagesArray: any) {
+    this.popupService.openImageViewer(imagesArray, selectedImageUrl);
   }
 
   loadEventImages(event: GalleryEvent) {
