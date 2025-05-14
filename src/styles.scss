@@ -24,7 +24,7 @@
   }
   
 
-html, body { height: 100%; }
+html, body { height: 100%; overflow-x: hidden; }
 body { margin: 0; font-family: 'Winky Rough', Roboto, "Helvetica Neue", sans-serif;  }
 
 .mat-mdc-dialog-container .mat-mdc-dialog-surface {
