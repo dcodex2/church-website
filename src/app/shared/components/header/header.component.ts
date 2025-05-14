@@ -48,7 +48,7 @@ import { TranslateService } from '@ngx-translate/core';
         ]"
       >
         <!-- 🌐 Language Dropdown -->
-        <div
+        <!-- <div
           class="absolute top-2 right-2 sm:top-4 sm:right-4 z-50"
           (clickOutside)="showLangDropdown = false"
         >
@@ -93,7 +93,7 @@ import { TranslateService } from '@ngx-translate/core';
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- 🍔 Mobile Menu Icon -->
         <div class="md:hidden absolute left-4 top-1/2 -translate-y-1/2">
