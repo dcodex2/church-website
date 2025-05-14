@@ -74,7 +74,6 @@ import { TranslateService } from '@ngx-translate/core';
               </svg>
             </button>
 
-            <!-- Dropdown -->
             <div
               *ngIf="showLangDropdown"
               class="absolute right-0 mt-2 w-32 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black/10 focus:outline-none"
