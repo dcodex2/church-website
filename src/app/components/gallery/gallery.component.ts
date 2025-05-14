@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { GalleryService } from './gallery.service';
 import { GalleryEvent } from './gallery.model';
 import { forkJoin, from, Observable, of, switchMap, take } from 'rxjs';
@@ -37,17 +43,21 @@ export class GalleryComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
-    private store: Store
+    private store: Store,
+    private cd: ChangeDetectorRef
   ) {
     this.events$ = this.store.select(selectGalleryEvents);
   }
 
   ngOnInit(): void {
     this.store.dispatch(loadGalleryEvents());
+    this.lang = (this.translateService.currentLang ||
+      this.translateService.getDefaultLang()) as 'en' | 'es';
 
     this.translateService.onLangChange.subscribe(
       (event: { lang: 'en' | 'es' }) => {
         this.lang = event.lang;
+        this.cd.detectChanges();
       }
     );
   }
