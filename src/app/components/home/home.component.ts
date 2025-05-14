@@ -28,7 +28,7 @@ export interface CalendarConfig {
   ],
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements AfterViewInit, OnInit {
+export class HomeComponent {
   backgroundImg: string =
     '/assets/images/curvy-blue-wave-lines-background-presentation-backdrop.jpg';
   imageSliderArr: SlideItems[] = [
@@ -138,14 +138,6 @@ export class HomeComponent implements AfterViewInit, OnInit {
     private popup: PopupService,
     private registry: PopupTemplateRegistryService
   ) {}
-
-  ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.translateReady = true;
-    //   console.log(this.translateReady);
-    // }, 100);
-  }
-  ngAfterViewInit(): void {}
 
   openPrayerRequestPopup() {
     const template = this.registry.getTemplate('prayerTemplate');

@@ -1,7 +1,7 @@
 export interface GalleryEvent {
   id: string;
-  name: string;
-  date: string;
+  title: { en: string; es: string };
+  description: { en: string; es: string };
   coverImage: string;
 }
 

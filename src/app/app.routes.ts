@@ -57,4 +57,8 @@ export const routes: Routes = [
     path: 'visit',
     component: VisitComponent,
   },
+  {
+    path: 'gallery',
+    component: GalleryComponent,
+  },
 ];

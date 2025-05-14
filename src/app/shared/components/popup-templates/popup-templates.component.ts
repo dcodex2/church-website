@@ -65,5 +65,5 @@ export class PopupTemplatesComponent implements AfterViewInit {
     // TODO: Handle submission (e.g., send to backend, show confirmation)
   }
 
-  closePrayer() {}
+  close() {}
 }

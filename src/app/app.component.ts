@@ -75,14 +75,13 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const testDocRef = doc(this.firestore, 'galleryEvents/kenya-2024');
-    console.log(testDocRef);
-    const docSnap = await getDocFromServer(testDocRef);
-    console.log(docSnap);
-
-    if (docSnap.exists()) {
-      console.log(docSnap.data());
-    }
+    // const testDocRef = doc(this.firestore, 'galleryEvents/kenya-2024');
+    // console.log(testDocRef);
+    // const docSnap = await getDocFromServer(testDocRef);
+    // console.log(docSnap);
+    // if (docSnap.exists()) {
+    //   console.log(docSnap.data());
+    // }
     // getDoc(testDocRef)
     //   .then((snap) => {
     //     console.log(snap);

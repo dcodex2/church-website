@@ -6,10 +6,6 @@ import {
 } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
-import {
-  provideClientHydration,
-  withEventReplay,
-} from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
@@ -26,6 +22,11 @@ import {
 } from '@angular/fire/firestore';
 
 import { environment } from './environments/environments';
+import { provideState, provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { galleryReducer } from './state/gallery.reducer';
+import { GalleryEffects } from './state/gallery.effect';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,8 +36,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
-
-    // ✅ FIXED: Force long polling + disable streaming listener bugs
     provideFirestore(() =>
       initializeFirestore(initializeApp(environment.firebase), {
         ignoreUndefinedProperties: true,
@@ -44,11 +43,9 @@ export const appConfig: ApplicationConfig = {
         localCache: persistentLocalCache(),
       })
     ),
-
     provideAnimations(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
-    provideClientHydration(withEventReplay()),
     provideHttpClient(),
     importProvidersFrom(
       HttpClientModule,
@@ -67,5 +64,9 @@ export const appConfig: ApplicationConfig = {
       multi: true,
       deps: [],
     },
+    provideStore(),
+    provideState({ name: 'galleryState', reducer: galleryReducer }),
+    provideEffects([GalleryEffects]),
+    provideStoreDevtools({}),
   ],
 };
