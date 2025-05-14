@@ -24,11 +24,14 @@
   }
   
 
-html, body { height: 100%; overflow-x: hidden; }
-@media only screen and (max-width: 1024px)
-{
-    overflowing_content_div { overflow:hidden; }
+html, body {   
+  width: 100%;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  position: relative;
 }
+
 body { margin: 0; font-family: 'Winky Rough', Roboto, "Helvetica Neue", sans-serif;  }
 
 .mat-mdc-dialog-container .mat-mdc-dialog-surface {
