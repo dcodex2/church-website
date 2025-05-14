@@ -27,6 +27,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Winky Rough', Roboto, "Helvetica Neue", sans-serif;  }
 
-::ng-deep .mat-mdc-dialog-surface {
+.mat-mdc-dialog-container .mat-mdc-dialog-surface {
   border-radius: 0 !important;
 }
+
