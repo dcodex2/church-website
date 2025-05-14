@@ -1,8 +1,5 @@
 {
   "projects": {
-    "default": "church-website-template-37956",
-    "church-website-template-basic": "church-website-template-37956"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "church-app-template"
+  }
 }
