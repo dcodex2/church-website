@@ -64,9 +64,9 @@ export const videosReducer = createReducer(
       );
       return {
         ...state,
-        youtube_videos: videos,
-        all: videos,
-        filtered: videos,
+        youtube_videos: sorted,
+        all: sorted,
+        filtered: sorted,
         loading: false,
       };
     }
