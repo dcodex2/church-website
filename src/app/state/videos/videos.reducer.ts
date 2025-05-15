@@ -43,7 +43,7 @@ export const videosReducer = createReducer(
   on(
     VideosActions.loadYouTubePlayListVideosSuccess,
     (state, { youtube_videos }) => {
-      console.log(youtube_videos);
+      const order = 'newest';
       const videos: SermonsModel[] = youtube_videos.map((item) => ({
         title: item.snippet.title,
         date: item.snippet.publishedAt,
@@ -56,6 +56,12 @@ export const videosReducer = createReducer(
           item.snippet.thumbnails.high?.url ||
           item.snippet.thumbnails.default?.url,
       }));
+
+      const sorted = videos.sort((a, b) =>
+        order === 'newest'
+          ? new Date(b.date).getTime() - new Date(a.date).getTime()
+          : new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
       return {
         ...state,
         youtube_videos: videos,
