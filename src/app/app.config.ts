@@ -29,6 +29,8 @@ import { GalleryEffects } from './state/gallery/gallery.effect';
 import { ministriesReducer } from './state/ministries/ministries.reducer';
 import { MinistriesEffects } from './state/ministries/ministries.effect';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { VideosEffects } from './state/videos/videos.effect';
+import { videosReducer } from './state/videos/videos.reducer';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -69,7 +71,8 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState({ name: 'ministriesState', reducer: ministriesReducer }),
     provideState({ name: 'galleryState', reducer: galleryReducer }),
-    provideEffects([GalleryEffects, MinistriesEffects]),
+    provideState({ name: 'videosState', reducer: videosReducer }),
+    provideEffects([GalleryEffects, MinistriesEffects, VideosEffects]),
     provideStoreDevtools({}),
   ],
 };

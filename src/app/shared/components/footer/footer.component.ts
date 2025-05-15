@@ -36,7 +36,18 @@ export interface FooterSection {
           <ul class="space-y-2">
             <li *ngFor="let link of section.links">
               <a
+                *ngIf="!link.external"
                 [routerLink]="link.path"
+                [target]="link.external ? '_blank' : '_self'"
+                class="hover:!text-[#005480] transition duration-200"
+                [style.color]="linkColor"
+                [style.fontSize]="linkFontSize"
+              >
+                {{ link.label | translate }}
+              </a>
+              <a
+                *ngIf="link.external"
+                [href]="link.path"
                 [target]="link.external ? '_blank' : '_self'"
                 class="hover:!text-[#005480] transition duration-200"
                 [style.color]="linkColor"

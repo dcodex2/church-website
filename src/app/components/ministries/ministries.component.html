@@ -1,4 +1,4 @@
-<section *ngIf="!selectedMinistry" class="bg-[#fefcf8] py-16 px-6 md:px-12">
+<section *ngIf="!selectedMinistry" class="bg-[#fefcf8] py-8 sm:py-16 px-6 md:px-12">
     <div class="max-w-6xl mx-auto text-center">
       <!-- Title -->
       <h2 class="text-3xl md:text-4xl font-bold text-[#005480] mb-4">
@@ -17,7 +17,8 @@
               [image]="ministry.coverImage"
               [title]="ministry.title[lang] | translate"
               [description]="ministry.description[lang] | translate"
-              class="w-full h-full rounded-2xl overflow-hidden flex content-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+              [buttonLabel]="'LEARN_MORE_BTN' | translate"
+              class="w-full h-full rounded-2xl overflow-hidden flex content-center justify-center  transition transform hover:scale-[1.02] hover:shadow-xl duration-300 cursor-pointer"
             ></app-info-card>
           </ng-container>
         </ng-container>

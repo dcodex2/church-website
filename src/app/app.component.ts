@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
         {
           label: 'FOOTER_SOCIAL_MEDIA_LINK_2',
           path: 'https://www.youtube.com/@SantanaCrafted',
+          external: true,
         },
         { label: 'FOOTER_SOCIAL_MEDIA_LINK_3' },
       ],

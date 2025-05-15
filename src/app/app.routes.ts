@@ -12,6 +12,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { VisitComponent } from './components/visit/visit.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { MinistriesComponent } from './components/ministries/ministries.component';
+import { SermonsComponent } from './components/sermons/sermons.component';
 
 export const routes: Routes = [
   {
@@ -65,5 +66,9 @@ export const routes: Routes = [
   {
     path: 'ministries',
     component: MinistriesComponent,
+  },
+  {
+    path: 'sermons',
+    component: SermonsComponent,
   },
 ];
