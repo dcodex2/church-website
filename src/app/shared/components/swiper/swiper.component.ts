@@ -152,6 +152,17 @@ export class SwiperComponent implements OnInit {
       this.swiperConfig.breakpoints = this.breakpointsConfig;
       this.swiperConfig.navigation = false;
       this.swiperConfig.loop = this.infinite;
+    } else {
+      this.breakpointsConfig = {
+        0: {
+          navigation: false,
+        },
+        768: {
+          navigation: true,
+        },
+      };
+
+      this.swiperConfig.breakpoints = this.breakpointsConfig;
     }
 
     if (this.autoplay) {

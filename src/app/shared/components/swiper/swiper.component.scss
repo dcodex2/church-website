@@ -5,6 +5,13 @@
   font-size: 1.5rem; /* optional: size */
 }
 
+@media only screen and (max-width: 600px) {
+  .swiper::part(button-next),
+  .swiper::part(button-prev) {
+   display: none;
+  }
+}
+
 .swiper {
   width: 100%;
 
