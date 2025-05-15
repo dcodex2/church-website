@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { loadMinistries } from '../../state/ministries/ministries.actions';
-import { selectMinistries } from '../../state/ministries/ministries.selector';
+import {
+  selectMinistries,
+  selectMinistriesLoading,
+} from '../../state/ministries/ministries.selector';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Ministries } from './ministries.model';
@@ -27,6 +30,7 @@ import {
 })
 export class MinistriesComponent implements OnInit {
   ministries$?: Observable<Ministries[]>;
+  ministriesLoading$?: Observable<boolean>;
   lang: 'en' | 'es' = 'en';
   selectedMinistry?: Ministries;
   interestForm!: FormGroup;
@@ -37,6 +41,7 @@ export class MinistriesComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.ministries$ = this.store.select(selectMinistries);
+    this.ministriesLoading$ = this.store.select(selectMinistriesLoading);
   }
 
   ngOnInit(): void {

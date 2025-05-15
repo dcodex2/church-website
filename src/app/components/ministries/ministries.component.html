@@ -23,6 +23,11 @@
         </ng-container>
       </div>
     </div>
+    <div *ngIf="ministriesLoading$ | async" class="dot-loader">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
   </section>
   <section *ngIf="selectedMinistry" class="relative bg-cover bg-center text-white py-24 px-6 md:px-12"
   [style.backgroundImage]="'url(' + selectedMinistry.coverImage + ')'">
