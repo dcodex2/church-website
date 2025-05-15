@@ -15,6 +15,7 @@ import {
 } from '../../state/videos/videos.actions';
 import { SermonsModel } from '../../shared/components/video-checker/youtube.model';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sermons',
@@ -23,6 +24,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
     CommonModule,
     VideoEmbedComponent,
     ClickOutsideModule,
+    TranslateModule,
   ],
   templateUrl: './sermons.component.html',
   styleUrl: './sermons.component.scss',

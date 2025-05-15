@@ -119,5 +119,11 @@
   "GALLERY_PAGE_HEADER": "Galeria de Eventos",
 
   "MINISTRIES_PAGE_HEADER": "Nuestros Ministerios",
-  "MINISTRIES_PAGE_DESCRIPTION": "Descubre los diferentes ministerios que ayudan a servir a nuestra comunidad y crecer en la fe."
+  "MINISTRIES_PAGE_DESCRIPTION": "Descubre los diferentes ministerios que ayudan a servir a nuestra comunidad y crecer en la fe.",
+
+  "SERMONS_PAGE_HEADER": "Sermones Pasados",
+  "SERMONS_PAGE_DESCRIPTION": "Mira mensajes de servicios anteriores y sé animado por la Palabra de Dios.",
+  "SERMONS_PAGE_FILTER1": "Más recientes primero",
+  "SERMONS_PAGE_FILTER2": "Más antiguos primero",
+  "SERMONS_PAGE_SEARCH": "Buscar sermones..."
 }

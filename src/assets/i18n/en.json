@@ -119,5 +119,11 @@
   "GALLERY_PAGE_HEADER": "Events Gallery",
 
   "MINISTRIES_PAGE_HEADER": "Our Ministries",
-  "MINISTRIES_PAGE_DESCRIPTION": "Discover the different ministries that help serve our community and grow in faith."
+  "MINISTRIES_PAGE_DESCRIPTION": "Discover the different ministries that help serve our community and grow in faith.",
+
+  "SERMONS_PAGE_HEADER": "Past Sermons",
+  "SERMONS_PAGE_DESCRIPTION": "Watch messages from previous services and be encouraged by God's Word.",
+  "SERMONS_PAGE_FILTER1": "Newest to Oldest",
+  "SERMONS_PAGE_FILTER2": "Oldest to Newest",
+  "SERMONS_PAGE_SEARCH": "Search sermons..."
 }
