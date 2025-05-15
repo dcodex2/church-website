@@ -13,13 +13,13 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
   loadEventGallery,
   loadGalleryEvents,
-} from '../../state/gallery.actions';
+} from '../../state/gallery/gallery.actions';
 import { Store } from '@ngrx/store';
 import {
   selectEventImages,
   selectGalleryEvents,
   selectGalleryLoading,
-} from '../../state/gallery.selector';
+} from '../../state/gallery/gallery.selector';
 import { PopupService } from '../../shared/services/popup/popup.service';
 @Component({
   selector: 'app-gallery',
@@ -47,7 +47,6 @@ export class GalleryComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private store: Store,
-    private cd: ChangeDetectorRef,
     private popupService: PopupService
   ) {
     this.events$ = this.store.select(selectGalleryEvents);
@@ -62,7 +61,6 @@ export class GalleryComponent implements OnInit {
     this.translateService.onLangChange.subscribe(
       (event: { lang: 'en' | 'es' }) => {
         this.lang = event.lang;
-        this.cd.detectChanges();
       }
     );
   }

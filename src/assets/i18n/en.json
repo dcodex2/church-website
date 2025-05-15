@@ -116,5 +116,8 @@
   "CONTACT_FORM_MESSAGE": "Your Message",
   "CONTACT_FORM_SUBMIT": "Send Message",
 
-  "GALLERY_PAGE_HEADER": "Events Gallery"
+  "GALLERY_PAGE_HEADER": "Events Gallery",
+
+  "MINISTRIES_PAGE_HEADER": "Our Ministries",
+  "MINISTRIES_PAGE_DESCRIPTION": "Discover the different ministries that help serve our community and grow in faith."
 }

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { GalleryEvent } from '../components/gallery/gallery.model';
+import { GalleryEvent } from '../../components/gallery/gallery.model';
 
 export const loadGalleryEvents = createAction(
   '[Event Gallery] Load Gallery Events'

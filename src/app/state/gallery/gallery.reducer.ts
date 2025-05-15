@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as GalleryActions from './gallery.actions';
-import { GalleryEvent } from '../components/gallery/gallery.model';
+import { GalleryEvent } from '../../components/gallery/gallery.model';
 
 export interface GalleryState {
   events: GalleryEvent[];

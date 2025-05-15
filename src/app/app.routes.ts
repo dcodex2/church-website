@@ -11,6 +11,7 @@ import { VideoComponent } from './components/video/video.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { VisitComponent } from './components/visit/visit.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { MinistriesComponent } from './components/ministries/ministries.component';
 
 export const routes: Routes = [
   {
@@ -60,5 +61,9 @@ export const routes: Routes = [
   {
     path: 'gallery',
     component: GalleryComponent,
+  },
+  {
+    path: 'ministries',
+    component: MinistriesComponent,
   },
 ];

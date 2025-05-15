@@ -116,5 +116,8 @@
   "CONTACT_FORM_EMAIL": "Tu Correo Electrónico",
   "CONTACT_FORM_MESSAGE": "Tu Mensaje",
   "CONTACT_FORM_SUBMIT": "Enviar Mensaje",
-  "GALLERY_PAGE_HEADER": "Galeria de Eventos"
+  "GALLERY_PAGE_HEADER": "Galeria de Eventos",
+
+  "MINISTRIES_PAGE_HEADER": "Nuestros Ministerios",
+  "MINISTRIES_PAGE_DESCRIPTION": "Descubre los diferentes ministerios que ayudan a servir a nuestra comunidad y crecer en la fe."
 }

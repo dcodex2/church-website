@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GalleryService } from '../components/gallery/gallery.service';
+import { GalleryService } from '../../components/gallery/gallery.service';
 import {
   loadGalleryEvents,
   loadGalleryEventsSuccess,
@@ -19,7 +19,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import {
   selectGalleryEventHasData,
-  selectGalleryEventImagesHasData,
   selectGalleryState,
 } from './gallery.selector';
 

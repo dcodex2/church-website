@@ -24,8 +24,10 @@ import {
 import { environment } from './environments/environments';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { galleryReducer } from './state/gallery.reducer';
-import { GalleryEffects } from './state/gallery.effect';
+import { galleryReducer } from './state/gallery/gallery.reducer';
+import { GalleryEffects } from './state/gallery/gallery.effect';
+import { ministriesReducer } from './state/ministries/ministries.reducer';
+import { MinistriesEffects } from './state/ministries/ministries.effect';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -65,8 +67,9 @@ export const appConfig: ApplicationConfig = {
       deps: [],
     },
     provideStore(),
+    provideState({ name: 'ministriesState', reducer: ministriesReducer }),
     provideState({ name: 'galleryState', reducer: galleryReducer }),
-    provideEffects([GalleryEffects]),
+    provideEffects([GalleryEffects, MinistriesEffects]),
     provideStoreDevtools({}),
   ],
 };

@@ -10,6 +10,11 @@ import { PopupTemplateRegistryService } from '../../shared/services/popup-templa
 import { PopupService } from '../../shared/services/popup/popup.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SwiperComponent } from '../../shared/components/swiper/swiper.component';
+import { Store } from '@ngrx/store';
+import { loadMinistries } from '../../state/ministries/ministries.actions';
+import { selectMinistries } from '../../state/ministries/ministries.selector';
+import { Ministries } from '../ministries/ministries.model';
+import { Observable } from 'rxjs';
 
 export interface CalendarConfig {
   theme?: 'light' | 'dark';
@@ -28,7 +33,7 @@ export interface CalendarConfig {
   ],
   templateUrl: './home.component.html',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   backgroundImg: string =
     '/assets/images/curvy-blue-wave-lines-background-presentation-backdrop.jpg';
   imageSliderArr: SlideItems[] = [
@@ -133,11 +138,19 @@ export class HomeComponent {
     },
   ];
   translateReady = false;
+  ministries$?: Observable<Ministries[]>;
 
   constructor(
     private popup: PopupService,
-    private registry: PopupTemplateRegistryService
-  ) {}
+    private registry: PopupTemplateRegistryService,
+    private store: Store
+  ) {
+    this.ministries$ = this.store.select(selectMinistries);
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(loadMinistries());
+  }
 
   openPrayerRequestPopup() {
     const template = this.registry.getTemplate('prayerTemplate');
