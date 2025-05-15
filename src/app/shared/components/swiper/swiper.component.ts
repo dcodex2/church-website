@@ -11,19 +11,20 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfoCardComponent } from '../info-card/info-card.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from './swiper.directive';
 import { delay } from 'rxjs';
+import { Ministries } from '../../../components/ministries/ministries.model';
 export interface SlideItems {
-  title: string;
-  description: string;
-  url: string;
+  title: { es: string; en: string };
+  description: { es: string; en: string };
+  coverImage: string;
   captionPosition?: string;
   textAlignment?: 'text-center' | 'text-left' | 'text-right';
-  badge: string;
+  badge?: string;
   icon?: string;
   buttonRoute?: string;
   descriptionFontClasses?: string;
@@ -69,7 +70,7 @@ export interface SlideItems {
 export class SwiperComponent implements OnInit {
   @ViewChild('swiper') swiper!: ElementRef<SwiperContainer>;
   @ViewChild('swiperEl', { static: true }) swiperEl!: ElementRef;
-  @Input() items: SlideItems[] = [];
+  @Input() items: SlideItems[] | Ministries[] | null = [];
   @Input() slidesToShow: number = 1;
   @Input() sliderWrapperStyle: string = 'h-150';
   @Input() sliderheight: string = 'h-150';
@@ -89,6 +90,7 @@ export class SwiperComponent implements OnInit {
   captionVisible = true;
   captionAnimation: any;
   captionState: any;
+  lang: 'en' | 'es' = 'en';
   swiperConfig: SwiperOptions = {
     spaceBetween: 0,
     navigation: true,
@@ -96,9 +98,20 @@ export class SwiperComponent implements OnInit {
     init: true,
     speed: 500,
   };
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(
+    private cd: ChangeDetectorRef,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
+    this.lang = (this.translateService.currentLang ||
+      this.translateService.getDefaultLang()) as 'en' | 'es';
+
+    this.translateService.onLangChange.subscribe(
+      (event: { lang: 'en' | 'es' }) => {
+        this.lang = event.lang;
+      }
+    );
     if (this.type === 'cards') {
       this.breakpointsConfig = {
         0: {

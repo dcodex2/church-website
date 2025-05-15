@@ -39,7 +39,7 @@ export interface FooterSection {
                 *ngIf="!link.external"
                 [routerLink]="link.path"
                 [target]="link.external ? '_blank' : '_self'"
-                class="hover:!text-[#005480] transition duration-200"
+                class="hover:!text-[#005480] transition duration-200 cursor-pointer"
                 [style.color]="linkColor"
                 [style.fontSize]="linkFontSize"
               >
@@ -49,7 +49,7 @@ export interface FooterSection {
                 *ngIf="link.external"
                 [href]="link.path"
                 [target]="link.external ? '_blank' : '_self'"
-                class="hover:!text-[#005480] transition duration-200"
+                class="hover:!text-[#005480] transition duration-200 cursor-pointer"
                 [style.color]="linkColor"
                 [style.fontSize]="linkFontSize"
               >

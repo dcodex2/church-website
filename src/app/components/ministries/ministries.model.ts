@@ -3,5 +3,5 @@ export interface Ministries {
   title: { en: string; es: string };
   description: { en: string; es: string };
   coverImage: string;
-  id: string;
+  id?: string;
 }

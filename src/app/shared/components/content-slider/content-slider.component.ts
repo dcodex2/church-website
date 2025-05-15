@@ -21,7 +21,7 @@ export interface SlideItems {
   url: string;
   captionPosition?: string;
   textAlignment?: 'text-center' | 'text-left' | 'text-right';
-  badge: string;
+  badge?: string;
   icon?: string;
   buttonRoute?: string;
   descriptionFontClasses?: string;

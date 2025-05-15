@@ -16,7 +16,7 @@
         <ng-container *ngIf="type === 'image'">
           <div [style.opacity]="item.slideOpacity || '0'" class="absolute inset-0 bg-black pointer-events-none"></div>
 
-          <img [src]="item.url" [alt]="item.title" class="w-full h-full object-cover object-center bg-black" />
+          <img [src]="item.coverImage" [alt]="item.title[lang]" class="w-full h-full object-cover object-center bg-black" />
 
           <div *ngIf="showCaption && i === activeIndex && showCaption"
             class="absolute w-full h-full px-4 text-white flex items-center justify-center z-10 top-0"
@@ -27,21 +27,21 @@
               item.titleFontClasses ||
               'text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-snug'
             ">
-                {{ item.title | translate }}
+                {{ item.title[lang] | translate }}
               </h5>
               <p [ngClass]="
               item.descriptionFontClasses ||
               'text-sm sm:text-base md:text-lg text-gray-200 mt-2'
             ">
-                {{ item.description | translate }}
+                {{ item.description[lang] | translate }}
               </p>
             </div>
           </div>
         </ng-container>
         <ng-container *ngIf="type === 'cards'">
-          <app-info-card [image]="item.url" [title]="item.title | translate"
+          <app-info-card [image]="item.coverImage" [title]="item.title[lang] | translate"
             class="w-full rounded-2xl overflow-hidden flex content-center justify-center"
-            [description]="item.description | translate" [buttonLabel]="'LEARN_MORE_BTN' | translate"
+            [description]="item.description[lang] | translate" [buttonLabel]="'LEARN_MORE_BTN' | translate"
             [buttonRoute]="item.buttonRoute" [badge]="item.badge" [icon]="item.icon"></app-info-card>
         </ng-container>
       </swiper-slide>
