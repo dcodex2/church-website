@@ -14,6 +14,7 @@ export class VideoCheckerComponent {
   // Your event schedule
   events = [
     { day: 'Wednesday', time: '8:00pm' },
+    { day: 'Thursday', time: '4:45pm' },
     { day: 'Friday', time: '8:00pm' },
     { day: 'Saturday', time: '10:00am' },
   ];
@@ -21,8 +22,11 @@ export class VideoCheckerComponent {
   constructor(private youtube: YouTubeService) {}
 
   ngOnInit(): void {
+    console.log('here');
+
     this.intervalId = setInterval(() => {
       if (this.liveVideoUrl) return;
+      console.log('here1');
 
       const now = new Date();
       const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' });
@@ -31,6 +35,9 @@ export class VideoCheckerComponent {
         minute: '2-digit',
         hour12: true,
       });
+      console.log('here2');
+      console.log(currentDay);
+      console.log(currentTime);
 
       const match = this.events.find(
         (e) =>
@@ -38,8 +45,12 @@ export class VideoCheckerComponent {
           this.normalize(e.time) === this.normalize(currentTime)
       );
 
+      console.log(match);
       if (match) {
         this.youtube.checkLive().subscribe((link) => {
+          console.log('checking.......');
+          console.log(link);
+
           if (link) {
             this.liveVideoUrl = link;
             clearInterval(this.intervalId);
@@ -47,7 +58,7 @@ export class VideoCheckerComponent {
           }
         });
       }
-    }, 60000);
+    }, 3000);
   }
 
   normalize(time: string): string {

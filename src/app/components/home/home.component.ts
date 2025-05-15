@@ -15,6 +15,7 @@ import { loadMinistries } from '../../state/ministries/ministries.actions';
 import { selectMinistries } from '../../state/ministries/ministries.selector';
 import { Ministries } from '../ministries/ministries.model';
 import { Observable } from 'rxjs';
+import { VideoCheckerComponent } from '../../shared/components/video-checker/video-checker.component';
 
 export interface CalendarConfig {
   theme?: 'light' | 'dark';
@@ -30,6 +31,7 @@ export interface CalendarConfig {
     ButtonComponent,
     TranslateModule,
     SwiperComponent,
+    VideoCheckerComponent,
   ],
   templateUrl: './home.component.html',
 })

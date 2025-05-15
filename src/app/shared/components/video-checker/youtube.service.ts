@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class YouTubeService {
   private API_KEY = 'AIzaSyA703ZADCLqlUtLzF7GK2UNg4jAEvjfXUM';
-  private CHANNEL_ID = 'SantanaCrafted';
+  private CHANNEL_ID = 'UCSaqriGXgU3rbOOda0w6YpA';
   private PLAYLIST_ID = 'PLltNahYVzsBoreTCED78Y5hQXYsQ16UwC';
 
   constructor(private http: HttpClient) {}
