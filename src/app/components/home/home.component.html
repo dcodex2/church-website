@@ -1,8 +1,7 @@
 <main class="">
   <app-swiper [items]="imageSliderArr" [autoplay]="true" [autoplaySpeed]="5000" [infinite]="true"
-    [sliderheight]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'"
-    [sliderWrapperStyle]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'" [buttonDesign]="'circle'"
-    [slidesToShow]="1" [captionTextAlignment]="'text-left'" [showCaption]="true"
+    [swiperheight]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'"
+    [slidesToShow]="1" [captionTextAlignment]="'text-center'" [showImageCaption]="true"
     [defaultCaptionPosition]="'bottom-left'" type="image"></app-swiper>
 
 </main>
@@ -119,8 +118,8 @@
       <div class="relative w-full">
         <div class="relative block">
           <app-swiper [items]="(ministries$ | async)" [autoplay]="false" [infinite]="false"
-          [buttonDesign]="'circle'" [slidesToShow]="3" [captionTextAlignment]="'text-left'" [showCaption]="true"
-          [defaultCaptionPosition]="'bottom-left'" type="cards"></app-swiper>
+          [slidesToShow]="3" [captionTextAlignment]="'text-left'"
+           type="cards"></app-swiper>
         </div>
       </div>
     </div>

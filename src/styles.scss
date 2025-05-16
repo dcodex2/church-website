@@ -35,6 +35,7 @@ html, body {
 body { margin: 0; font-family: 'Winky Rough', Roboto, "Helvetica Neue", sans-serif;  }
 
 .mat-mdc-dialog-container .mat-mdc-dialog-surface {
-  border-radius: 0 !important;
+  // border-radius: 0 !important;
+  background-color: transparent;
 }
 

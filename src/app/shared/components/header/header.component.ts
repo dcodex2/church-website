@@ -204,6 +204,7 @@ export class HeaderComponent {
 
   switchLang(lang: string) {
     this.translate.use(lang);
+    localStorage.setItem('preferredLang', lang);
     this.showLangDropdown = false;
   }
 }

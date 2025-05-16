@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PopupTemplatesComponent } from './shared/components/popup-templates/popup-templates.component';
 import { FormsModule } from '@angular/forms';
@@ -9,10 +9,10 @@ import {
 } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import { SwiperComponent } from './shared/components/swiper/swiper.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterOutlet,
     PopupTemplatesComponent,
@@ -21,14 +21,15 @@ import { SwiperComponent } from './shared/components/swiper/swiper.component';
     FooterComponent,
     HeaderComponent,
     TranslateModule,
-    SwiperComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'church-website-template-basic';
   logoUrl = '/logos/church-logo.png';
+  translationsReady = false;
+
   footerSections: FooterSection[] = [
     {
       title: 'FOOTER_QUICK_LINK_HEADER',
@@ -58,17 +59,17 @@ export class AppComponent implements OnInit {
       ],
     },
   ];
-  translationsReady: boolean = false;
 
   constructor(private translate: TranslateService) {
-    translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('en');
+    this.translate.addLangs(['en', 'es']);
+    this.translate.setDefaultLang('en');
+    const savedLang = localStorage.getItem('preferredLang');
+    const browserLang = this.translate.getBrowserLang();
+    const defaultLang =
+      savedLang ?? (browserLang?.match(/en|es/) ? browserLang : 'en');
 
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang?.match(/en|es/) ? browserLang : 'en');
+    this.translate.use(defaultLang);
   }
-
-  async ngOnInit(): Promise<void> {}
 
   switchLang(lang: string) {
     this.translate.use(lang);

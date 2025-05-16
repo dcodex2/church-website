@@ -125,5 +125,8 @@
   "SERMONS_PAGE_DESCRIPTION": "Watch messages from previous services and be encouraged by God's Word.",
   "SERMONS_PAGE_FILTER1": "Newest to Oldest",
   "SERMONS_PAGE_FILTER2": "Oldest to Newest",
-  "SERMONS_PAGE_SEARCH": "Search sermons..."
+  "SERMONS_PAGE_SEARCH": "Search sermons...",
+
+  "GIVE_PAGE_HEADER": "Support Our Mission",
+  "GIVE_PAGE_DESCRIPTION": "Your generosity empowers our ministries and brings hope to our community. Choose your preferred method of giving below."
 }

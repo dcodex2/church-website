@@ -125,5 +125,8 @@
   "SERMONS_PAGE_DESCRIPTION": "Mira mensajes de servicios anteriores y sé animado por la Palabra de Dios.",
   "SERMONS_PAGE_FILTER1": "Más recientes primero",
   "SERMONS_PAGE_FILTER2": "Más antiguos primero",
-  "SERMONS_PAGE_SEARCH": "Buscar sermones..."
+  "SERMONS_PAGE_SEARCH": "Buscar sermones...",
+
+  "GIVE_PAGE_HEADER": "Apoya Nuestra Misión",
+  "GIVE_PAGE_DESCRIPTION": "Tu generosidad fortalece nuestros ministerios y lleva esperanza a nuestra comunidad. Elige tu método de donación preferido a continuación."
 }

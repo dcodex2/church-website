@@ -2,12 +2,10 @@ import {
   Component,
   Input,
   OnInit,
-  AfterViewInit,
   ChangeDetectorRef,
   CUSTOM_ELEMENTS_SCHEMA,
   ViewChild,
   ElementRef,
-  Renderer2,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfoCardComponent } from '../info-card/info-card.component';
@@ -17,6 +15,7 @@ import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from './swiper.directive';
 import { Ministries } from '../../../components/ministries/ministries.model';
+
 export interface SlideItems {
   title: { es: string; en: string };
   description: { es: string; en: string };
@@ -25,7 +24,7 @@ export interface SlideItems {
   textAlignment?: 'text-center' | 'text-left' | 'text-right';
   badge?: string;
   icon?: string;
-  buttonRoute?: string;
+  route?: string;
   descriptionFontClasses?: string;
   titleFontClasses?: string;
   slideOpacity?: string;
@@ -64,19 +63,16 @@ export interface SlideItems {
       ]),
     ]),
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA], // ✅ Add this line
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SwiperComponent implements OnInit {
   @ViewChild('swiper') swiper!: ElementRef<SwiperContainer>;
-  @ViewChild('swiperEl', { static: true }) swiperEl!: ElementRef;
   @Input() items: SlideItems[] | Ministries[] | null = [];
   @Input() slidesToShow: number = 1;
-  @Input() sliderWrapperStyle: string = 'h-150';
-  @Input() sliderheight: string = 'h-150';
-  @Input() buttonDesign: string = 'circle';
+  @Input() swiperheight: string = 'h-150';
   @Input() autoplay: boolean = true;
   @Input() autoplaySpeed: number = 5000;
-  @Input() showCaption: boolean = true;
+  @Input() showImageCaption: boolean = true;
   @Input() defaultCaptionPosition: string = 'bottom-left';
   @Input() captionTextAlignment: 'text-center' | 'text-left' | 'text-right' =
     'text-left';

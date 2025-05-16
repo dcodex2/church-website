@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { QRCodeComponent } from 'angularx-qrcode';
 import { TabsComponent } from '../../shared/components/tabs/tabs.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-give',
-  imports: [CommonModule, QRCodeComponent, TabsComponent],
+  imports: [CommonModule, QRCodeComponent, TabsComponent, TranslateModule],
   templateUrl: './give.component.html',
   styleUrl: './give.component.scss',
 })
