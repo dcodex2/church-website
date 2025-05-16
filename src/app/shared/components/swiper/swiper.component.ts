@@ -16,7 +16,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from './swiper.directive';
-import { delay } from 'rxjs';
 import { Ministries } from '../../../components/ministries/ministries.model';
 export interface SlideItems {
   title: { es: string; en: string };

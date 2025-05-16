@@ -26,6 +26,7 @@
     "@ngrx/store-devtools": "^19.2.0",
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
+    "angularx-qrcode": "^19.0.0",
     "firebase": "^11.7.1",
     "jquery": "^3.7.1",
     "ng-click-outside": "^9.0.0",

@@ -13,6 +13,7 @@ import { VisitComponent } from './components/visit/visit.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { MinistriesComponent } from './components/ministries/ministries.component';
 import { SermonsComponent } from './components/sermons/sermons.component';
+import { GiveComponent } from './components/give/give.component';
 
 export const routes: Routes = [
   {
@@ -70,5 +71,9 @@ export const routes: Routes = [
   {
     path: 'sermons',
     component: SermonsComponent,
+  },
+  {
+    path: 'give',
+    component: GiveComponent,
   },
 ];
