@@ -34,7 +34,6 @@ export class AppComponent {
     {
       title: 'FOOTER_QUICK_LINK_HEADER',
       links: [
-        { label: 'FOOTER_QUICK_LINK_1', path: '/blog' },
         { label: 'FOOTER_QUICK_LINK_2', path: '/blog' },
         { label: 'FOOTER_QUICK_LINK_3', path: '/contact' },
       ],

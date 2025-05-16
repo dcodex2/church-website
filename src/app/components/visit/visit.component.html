@@ -37,49 +37,12 @@
       </div>
     </div>
 
-    <!-- Optional Form -->
-    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-md max-w-2xl mx-auto mb-10">
-      <h4 class="text-lg font-semibold text-[#005480] mb-4">
-        {{ 'CONTACT_PAGE_FORM_HEADER' | translate }}
-      </h4>
-      <p class="text-sm text-gray-600 mb-4">
-        {{ 'CONTACT_PAGE_FORM_DESCRIPTION' | translate }}
-      </p>
-
-      <form>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <input
-            type="text"
-            [placeholder]="'CONTACT_PAGE_FORM_PLACEHOLDER_NAME' | translate"
-            class="w-full border rounded px-4 py-2"
-          />
-          <input
-            type="email"
-            [placeholder]="'CONTACT_PAGE_FORM_PLACEHOLDER_EMAIL' | translate"
-            class="w-full border rounded px-4 py-2"
-          />
-        </div>
-        <div class="mb-4">
-          <input
-          type="date"
-          class="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Select a date"
-          onfocus="(this.type='date')"
-          onblur="if(!this.value)this.type='text'"
-          [value]="today"
-        />
-        </div>
-
-        <app-button
-          [type]="'button'"
-          class="flex justify-center content-center"
-          [defaultClasses]="'hover:!bg-[#004466] transition'"
-          [padding]="'.7rem 1.5rem'"
-          [backgroundColor]="'#005480'"
-          [label]="'CONTACT_PAGE_FORM_BUTTON' | translate"
-        ></app-button>
-      </form>
-    </div>
+      <!-- Google Map -->
+      <div class="rounded-lg overflow-hidden shadow-lg h-64 md:h-96 mb-8">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.022175285718!2d-122.41941568468195!3d37.77492977975973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6adf6a35%3A0x4f4e5d77407cb5a4!2sYour%20Church%20Address!5e0!3m2!1sen!2sus!4v1614124092995!5m2!1sen!2sus"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
 
     <!-- CTA Buttons -->
     <div class="flex flex-col md:flex-row items-center justify-center gap-4">
