@@ -113,6 +113,8 @@
   "CONTACT_FORM_EMAIL": "Your Email",
   "CONTACT_FORM_MESSAGE": "Your Message",
   "CONTACT_FORM_SUBMIT": "Send Message",
+  "CONTACT_FORM_SUCCESS": "Your message has been sent successfully!",
+  "CONTACT_FORM_ERROR": "There was an error sending your message. Please try again later.",
 
   "GALLERY_PAGE_HEADER": "Events Gallery",
 
