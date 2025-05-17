@@ -31,6 +31,7 @@ import { MinistriesEffects } from './state/ministries/ministries.effect';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { VideosEffects } from './state/videos/videos.effect';
 import { videosReducer } from './state/videos/videos.reducer';
+import { provideFunctions, getFunctions } from '@angular/fire/functions';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFunctions(() => getFunctions()),
     provideStorage(() => getStorage()),
     provideFirestore(() =>
       initializeFirestore(initializeApp(environment.firebase), {

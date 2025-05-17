@@ -8,11 +8,12 @@ import { PopupTemplateRegistryService } from '../../services/popup-template-regi
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-popup-templates',
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonComponent],
+  imports: [CommonModule, FormsModule, ButtonComponent, TranslateModule],
   templateUrl: './popup-templates.component.html',
 })
 export class PopupTemplatesComponent implements AfterViewInit {
@@ -21,6 +22,7 @@ export class PopupTemplatesComponent implements AfterViewInit {
   @ViewChild('info') info!: TemplateRef<any>;
   @ViewChild('addEventTemplate') addEventTemplate!: TemplateRef<any>;
   @ViewChild('prayerTemplate') prayerTemplate!: TemplateRef<any>;
+  @ViewChild('serviceTemplate') serviceTemplate!: TemplateRef<any>;
 
   ministryName = '';
   name = '';
@@ -48,6 +50,7 @@ export class PopupTemplatesComponent implements AfterViewInit {
     this.registry.registerTemplate('info', this.info);
     this.registry.registerTemplate('addEventTemplate', this.addEventTemplate);
     this.registry.registerTemplate('prayerTemplate', this.prayerTemplate);
+    this.registry.registerTemplate('serviceTemplate', this.serviceTemplate);
   }
 
   onFileSelected(event: any) {

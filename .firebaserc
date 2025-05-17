@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "church-app-template"
-  }
+    "default": "church-app-template-64ef2",
+    "church-app-template-basic": "church-app-template-64ef2"
+  },
+  "targets": {},
+  "etags": {}
 }

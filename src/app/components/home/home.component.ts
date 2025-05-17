@@ -6,7 +6,8 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 import { TranslateModule } from '@ngx-translate/core';
 import { SwiperComponent } from '../../shared/components/swiper/swiper.component';
 import { VideoCheckerComponent } from '../../shared/components/video-checker/video-checker.component';
-
+import { PopupTemplateRegistryService } from '../../shared/services/popup-template-registry.service';
+import { PopupService } from '../../shared/services/popup/popup.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -23,6 +24,28 @@ import { VideoCheckerComponent } from '../../shared/components/video-checker/vid
 export class HomeComponent {
   backgroundImg: string =
     '/assets/images/curvy-blue-wave-lines-background-presentation-backdrop.jpg';
+  churchServices: { day: string; time: string; description: string }[] = [
+    {
+      day: 'HOME_PAGE_SERVICE_SQUEDULE_DAY_1',
+      time: '8:00 PM – 9:00 PM',
+      description: 'Midweek Bible study and prayer meeting.',
+    },
+    {
+      day: 'HOME_PAGE_SERVICE_SQUEDULE_DAY_2',
+      time: '8:00 PM – 9:00 PM',
+      description: 'Midweek Bible study and prayer meeting.',
+    },
+    {
+      day: 'HOME_PAGE_SERVICE_SQUEDULE_DAY_3',
+      time: '8:00 PM – 9:00 PM',
+      description: 'Midweek Bible study and prayer meeting.',
+    },
+    {
+      day: 'HOME_PAGE_SERVICE_SQUEDULE_DAY_4',
+      time: '9:00 AM – 12:00 PM',
+      description: 'Midweek Bible study and prayer meeting.',
+    },
+  ];
   imageSliderArr: SlideItems[] = [
     {
       title: {
@@ -78,4 +101,27 @@ export class HomeComponent {
       badge: '',
     },
   ];
+
+  constructor(
+    private registry: PopupTemplateRegistryService,
+    private popup: PopupService
+  ) {}
+
+  openServicePopup(service: {
+    day: string;
+    time: string;
+    description: string;
+  }) {
+    const template = this.registry.getTemplate('serviceTemplate');
+    if (template) {
+      this.popup.open(template, {
+        service: service,
+        close: (confirmed: boolean) => {
+          this.popup.close();
+        },
+      });
+    } else {
+      console.error('Template not found.');
+    }
+  }
 }

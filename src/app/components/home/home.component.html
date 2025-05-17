@@ -62,29 +62,13 @@
       📅 {{ 'HOME_PAGE_SERVICE_SQUEDULE_HEADER' | translate }}
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-      <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
-        <h3 class="text-lg font-semibold text-[#005480]">
-          {{ 'HOME_PAGE_SERVICE_SQUEDULE_DAY_1' | translate }}
-        </h3>
-        <p class="text-gray-600">8:00 PM – 9:00 PM</p>
-      </div>
-      <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
-        <h3 class="text-lg font-semibold text-[#005480]">
-          {{ 'HOME_PAGE_SERVICE_SQUEDULE_DAY_2' | translate }}
-        </h3>
-        <p class="text-gray-600">8:00 PM – 9:00 PM</p>
-      </div>
-      <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
-        <h3 class="text-lg font-semibold text-[#005480]">
-          {{ 'HOME_PAGE_SERVICE_SQUEDULE_DAY_3' | translate }}
-        </h3>
-        <p class="text-gray-600">8:00 PM – 9:00 PM</p>
-      </div>
-      <div class="p-4 border rounded-lg shadow-sm bg-gray-50">
-        <h3 class="text-lg font-semibold text-[#005480]">
-          {{ 'HOME_PAGE_SERVICE_SQUEDULE_DAY_4' | translate }}
-        </h3>
-        <p class="text-gray-600">9:00 AM – 12:00 PM</p>
+      <div *ngFor="let service of churchServices" (click)="openServicePopup(service)">
+        <div class="p-4 border rounded-lg shadow-sm bg-gray-50 transition transform hover:scale-[1.02] hover:shadow-xl duration-300 cursor-pointer">
+          <h3 class="text-lg font-semibold text-[#005480]">
+            {{ service.day | translate }}
+          </h3>
+          <p class="text-gray-600">{{service.time}}</p>
+        </div>
       </div>
     </div>
   </section>
