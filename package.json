@@ -28,6 +28,8 @@
     "@ngx-translate/http-loader": "^16.0.1",
     "angularx-qrcode": "^19.0.0",
     "firebase": "^11.7.1",
+    "firebase-admin": "^13.4.0",
+    "firebase-functions": "^6.3.2",
     "jquery": "^3.7.1",
     "ng-click-outside": "^9.0.0",
     "ngx-slick-carousel": "^19.0.0",
