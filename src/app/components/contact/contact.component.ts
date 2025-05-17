@@ -49,6 +49,7 @@ export class ContactComponent {
     const formData = this.contactForm.value;
 
     const sendContactEmail = httpsCallable(this.functions, 'sendContactEmail');
+    console.log('calling via callable:', sendContactEmail);
 
     sendContactEmail(formData)
       .then(() => {

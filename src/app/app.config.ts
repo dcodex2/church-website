@@ -40,7 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFunctions(() => getFunctions()),
+    provideFunctions(() => getFunctions(undefined, 'us-central1')),
     provideStorage(() => getStorage()),
     provideFirestore(() =>
       initializeFirestore(initializeApp(environment.firebase), {
