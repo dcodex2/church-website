@@ -1,41 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../../shared/components/button/button.component';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import {
-  provideFunctions,
-  getFunctions,
-  httpsCallable,
-  Functions,
-} from '@angular/fire/functions';
+import { FormGroup } from '@angular/forms';
+import { httpsCallable } from '@angular/fire/functions';
+import { Functions } from '@angular/fire/functions';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
   imports: [
     CommonModule,
-    ButtonComponent,
-    TranslateModule,
     ReactiveFormsModule,
+    TranslateModule,
+    ButtonComponent,
   ],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent {
-  contactForm!: FormGroup;
+  fb = inject(FormBuilder);
+  translate = inject(TranslateService);
+  functions = inject(Functions); // ✅ inject() instead of constructor
+  contactForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private functions: Functions,
-    private translate: TranslateService
-  ) {}
-  ngOnInit(): void {
+  constructor() {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -46,18 +35,14 @@ export class ContactComponent {
   onSubmit() {
     if (this.contactForm.invalid) return;
 
-    const formData = this.contactForm.value;
-
     const sendContactEmail = httpsCallable(this.functions, 'sendContactEmail');
-    console.log('calling via callable:', sendContactEmail);
-
-    sendContactEmail(formData)
+    sendContactEmail(this.contactForm.value)
       .then(() => {
         alert('Message sent!');
         this.contactForm.reset();
       })
       .catch((err) => {
-        console.error(err);
+        console.error('Firebase Error:', err);
         alert('Failed to send message.');
       });
   }
