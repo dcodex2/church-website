@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, RouterOutlet, Router } from '@angular/router';
 import { PopupTemplatesComponent } from './shared/components/popup-templates/popup-templates.component';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import {
   FooterComponent,
   FooterSection,
 } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -36,6 +37,7 @@ export class AppComponent {
       links: [
         { label: 'FOOTER_QUICK_LINK_2', path: '/give' },
         { label: 'FOOTER_QUICK_LINK_3', path: '/contact' },
+        { label: 'FOOTER_QUICK_LINK_4', path: '/kids-programs' },
       ],
     },
     {
@@ -53,13 +55,17 @@ export class AppComponent {
     {
       title: 'FOOTER_LEGAL_HEADER',
       links: [
-        { label: 'FOOTER_LEGAL_LINK_1', path: '/privacy' },
+        { label: 'FOOTER_LEGAL_LINK_1', path: '/privacy-policy' },
         { label: 'FOOTER_LEGAL_LINK_2', path: '/terms' },
       ],
     },
   ];
 
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private viewportScroller: ViewportScroller
+  ) {
     this.translate.addLangs(['en', 'es']);
     this.translate.setDefaultLang('en');
     const savedLang = localStorage.getItem('preferredLang');
@@ -68,6 +74,11 @@ export class AppComponent {
       savedLang ?? (browserLang?.match(/en|es/) ? browserLang : 'en');
 
     this.translate.use(defaultLang);
+    this.router.events
+      .pipe(filter((event: any) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.viewportScroller.scrollToPosition([0, 0]);
+      });
   }
 
   switchLang(lang: string) {

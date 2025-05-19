@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SlideItems } from '../../shared/components/swiper/swiper.component';
 import { VideoEmbedComponent } from '../../shared/components/video-embed/video-embed.component';
@@ -8,6 +8,10 @@ import { SwiperComponent } from '../../shared/components/swiper/swiper.component
 import { VideoCheckerComponent } from '../../shared/components/video-checker/video-checker.component';
 import { PopupTemplateRegistryService } from '../../shared/services/popup-template-registry.service';
 import { PopupService } from '../../shared/services/popup/popup.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { httpsCallable } from 'firebase/functions';
+import { Functions } from '@angular/fire/functions';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -22,6 +26,7 @@ import { PopupService } from '../../shared/services/popup/popup.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  prayerForm: FormGroup;
   backgroundImg: string =
     '/assets/images/curvy-blue-wave-lines-background-presentation-backdrop.jpg';
   churchServices: { day: string; time: string; description: string }[] = [
@@ -101,11 +106,20 @@ export class HomeComponent {
       badge: '',
     },
   ];
+  functions = inject(Functions);
+  isLoading: boolean = false;
 
   constructor(
     private registry: PopupTemplateRegistryService,
-    private popup: PopupService
-  ) {}
+    private popup: PopupService,
+    private fb: FormBuilder
+  ) {
+    this.prayerForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', Validators.required],
+    });
+  }
 
   openServicePopup(service: {
     day: string;
@@ -116,12 +130,48 @@ export class HomeComponent {
     if (template) {
       this.popup.open(template, {
         service: service,
-        close: (confirmed: boolean) => {
+        close: () => {
           this.popup.close();
         },
       });
     } else {
       console.error('Template not found.');
     }
+  }
+
+  openPrayerRequestPopup() {
+    const template = this.registry.getTemplate('prayerTemplate');
+    if (template) {
+      this.popup.open(template, {
+        prayerForm: this.prayerForm,
+        isLoading: this.isLoading,
+        close: () => {
+          this.popup.close();
+        },
+        onSubmit: () => {
+          if (this.prayerForm.invalid) return;
+          this.isLoading = true;
+          this.sendPrayerRequest();
+        },
+      });
+    } else {
+      console.error('Template not found.');
+    }
+  }
+
+  sendPrayerRequest() {
+    const sendContactEmail = httpsCallable(this.functions, 'sendContactEmail');
+    sendContactEmail(this.prayerForm.value)
+      .then(() => {
+        this.prayerForm.reset();
+        this.isLoading = false;
+        this.popup.close();
+        this.registry.handleTemplateClosed();
+        alert('Message sent!');
+      })
+      .catch((err) => {
+        console.error('Firebase Error:', err);
+        alert('Failed to send message.');
+      });
   }
 }

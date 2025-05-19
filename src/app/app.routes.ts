@@ -9,6 +9,9 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { MinistriesComponent } from './components/ministries/ministries.component';
 import { SermonsComponent } from './components/sermons/sermons.component';
 import { GiveComponent } from './components/give/give.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { TermServiceComponent } from './components/term-service/term-service.component';
+import { KidsProgramsComponent } from './components/kids-programs/kids-programs.component';
 
 export const routes: Routes = [
   {
@@ -50,5 +53,17 @@ export const routes: Routes = [
   {
     path: 'give',
     component: GiveComponent,
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent,
+  },
+  {
+    path: 'terms',
+    component: TermServiceComponent,
+  },
+  {
+    path: 'kids-programs',
+    component: KidsProgramsComponent,
   },
 ];

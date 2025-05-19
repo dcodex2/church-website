@@ -21,7 +21,7 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 export class ContactComponent {
   fb = inject(FormBuilder);
   translate = inject(TranslateService);
-  functions = inject(Functions); // ✅ inject() instead of constructor
+  functions = inject(Functions);
   contactForm: FormGroup;
 
   constructor() {

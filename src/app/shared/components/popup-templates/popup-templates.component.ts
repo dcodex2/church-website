@@ -3,27 +3,36 @@ import {
   TemplateRef,
   ViewChild,
   AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import { PopupTemplateRegistryService } from '../../services/popup-template-registry.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-popup-templates',
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonComponent, TranslateModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ButtonComponent,
+    TranslateModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './popup-templates.component.html',
 })
-export class PopupTemplatesComponent implements AfterViewInit {
+export class PopupTemplatesComponent implements AfterViewInit, OnDestroy {
   @ViewChild('confirm') confirm!: TemplateRef<any>;
   @ViewChild('addMinistry') addMinistry!: TemplateRef<any>;
   @ViewChild('info') info!: TemplateRef<any>;
   @ViewChild('addEventTemplate') addEventTemplate!: TemplateRef<any>;
   @ViewChild('prayerTemplate') prayerTemplate!: TemplateRef<any>;
   @ViewChild('serviceTemplate') serviceTemplate!: TemplateRef<any>;
-
+  private subscription?: Subscription;
+  isLoading: boolean = false;
   ministryName = '';
   name = '';
   newEvent = {
@@ -44,7 +53,15 @@ export class PopupTemplatesComponent implements AfterViewInit {
 
   constructor(private registry: PopupTemplateRegistryService) {}
 
+  ngOnDestroy(): void {
+    this.isLoading = false;
+    this.subscription?.unsubscribe();
+  }
+
   ngAfterViewInit(): void {
+    this.subscription = this.registry.onTemplateClosed$.subscribe((msg) => {
+      this.isLoading = false;
+    });
     this.registry.registerTemplate('confirm', this.confirm);
     this.registry.registerTemplate('addMinistry', this.addMinistry);
     this.registry.registerTemplate('info', this.info);
@@ -67,6 +84,4 @@ export class PopupTemplatesComponent implements AfterViewInit {
     console.log('Prayer Request Submitted:', this.prayer);
     // TODO: Handle submission (e.g., send to backend, show confirmation)
   }
-
-  close() {}
 }
