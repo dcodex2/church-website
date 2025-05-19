@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { httpsCallable } from '@angular/fire/functions';
 import { Functions } from '@angular/fire/functions';
 import { ButtonComponent } from '../../shared/components/button/button.component';
+import { SnackbarService } from '../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-contact',
@@ -24,7 +25,7 @@ export class ContactComponent {
   functions = inject(Functions);
   contactForm: FormGroup;
 
-  constructor() {
+  constructor(private snackbar: SnackbarService) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -38,7 +39,7 @@ export class ContactComponent {
     const sendContactEmail = httpsCallable(this.functions, 'sendContactEmail');
     sendContactEmail(this.contactForm.value)
       .then(() => {
-        alert('Message sent!');
+        this.snackbar.openSnackBar('Message sent!', 'Close');
         this.contactForm.reset();
       })
       .catch((err) => {

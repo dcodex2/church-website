@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,5 +39,13 @@ body { margin: 0; font-family: 'Winky Rough', Roboto, "Helvetica Neue", sans-ser
 .mat-mdc-dialog-container .mat-mdc-dialog-surface {
   // border-radius: 0 !important;
   background-color: transparent;
+}
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.snack-bar-overrides((
+    container-color: white,
+    supporting-text-color: black,
+    button-color: #005480
+  ));
 }
 

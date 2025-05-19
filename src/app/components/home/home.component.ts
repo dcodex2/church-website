@@ -11,6 +11,7 @@ import { PopupService } from '../../shared/services/popup/popup.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { httpsCallable } from 'firebase/functions';
 import { Functions } from '@angular/fire/functions';
+import { SnackbarService } from '../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-home',
@@ -112,7 +113,8 @@ export class HomeComponent {
   constructor(
     private registry: PopupTemplateRegistryService,
     private popup: PopupService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackbar: SnackbarService
   ) {
     this.prayerForm = this.fb.group({
       name: ['', Validators.required],
@@ -167,7 +169,7 @@ export class HomeComponent {
         this.isLoading = false;
         this.popup.close();
         this.registry.handleTemplateClosed();
-        alert('Message sent!');
+        this.snackbar.openSnackBar('Message sent!', 'Close');
       })
       .catch((err) => {
         console.error('Firebase Error:', err);
